@@ -112,6 +112,16 @@ const items = {
         }
       ]
     }
+	},
+	food: {
+		chicken: {
+	    sandwich: [
+	      {
+	        type: "uh chicken",
+	        price: 14.50
+	      },
+	    ]
+	  }
 	}
 }
 
