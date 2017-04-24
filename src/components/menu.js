@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 
 import Items from '../data/items';
-
-				
-				
-			
-
+import './menu.css';
 
 class Menu extends Component {
+	constructor(props){
+		super(props)
 
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick(brand, price, size) {
+		console.log("brand: ", brand)
+		console.log("price: ", price)
+		console.log("size: ", size)
+	}
 	// this will go through Data/items and return the items as butons able to be clicked.
 	renderButtons(toRender){
 		return toRender.map((item, index) => {
@@ -17,7 +23,7 @@ class Menu extends Component {
 				// returns the size and price of the brands item
 				return Object.keys(item.price).map((size, i) => {
 					return(
-						<button key={item.brand + item.price[size] + i}>
+						<button onClick={() => this.handleClick(item.brand, item.price[size], size)} className="btn btn-default" key={item.brand + item.price[size] + i}>
 							<div>{item.brand}</div>
 							<div>{size}: {item.price[size]}</div>
 						</button>
@@ -26,7 +32,7 @@ class Menu extends Component {
 			} else {
 				// if it doesnt have multiple prices, will return correctly
 				return(
-						<button key={item.brand + item.price + index}>
+						<button onClick={() => this.handleClick(item.brand, item.price, "bottle")} className="btn btn-default" key={item.brand + item.price + index}>
 							<div>{item.brand}</div>
 							<div>{item.price}</div>
 						</button>
@@ -42,10 +48,10 @@ class Menu extends Component {
 		return (
 			<div className="container">
 				<div className="tab-content">
-					<div id="home" className="tab-pane fade in active">
+					<div id="home" className="tab-pane fade">
 						<h2>Home</h2>
 					</div>
-					<div id="drink" className="tab-pane fade">
+					<div id="drink" className="tab-pane fade in active">
 						<h2>Alcohol</h2>
 						<div>
 							<h4>tap</h4>

@@ -56,6 +56,7 @@ const items = {
           brand: "grey goose",
           price: {
             shot: 3.00,
+            double: 5.50,
             bottle: 27.50
           }
         },
@@ -63,6 +64,7 @@ const items = {
           brand: "ciroc",
           price: {
             shot: 4.00,
+            double: 7.50,
             bottle: 33.50
           }
         },
@@ -70,6 +72,7 @@ const items = {
           brand: "Skyy Vodka",
           price: {
             shot: 2.50,
+            double: 4.50,
             bottle: 21.50
           }
         },
@@ -77,6 +80,7 @@ const items = {
           brand: "Absolut Vodka",
           price: {
             shot: 3.50,
+            double: 7.00,
             bottle: 28.50
           }
         }
@@ -86,6 +90,7 @@ const items = {
           brand: "patron",
           price: {
             shot: 4.00,
+            double: 7.50,
             bottle: 28.50
           }
         },
@@ -93,6 +98,7 @@ const items = {
           brand: "Don Julio",
           price: {
             shot: 3.50,
+            double: 6.50,
             bottle: 33.50
           }
         },
@@ -100,6 +106,7 @@ const items = {
           brand: "Tres Agaves",
           price: {
             shot: 5.50,
+            double: 10.50,
             bottle: 45.50
           }
         },
@@ -107,6 +114,7 @@ const items = {
           brand: "sauza gold",
           price: {
             shot: 5.50,
+            double: 10.50,
             bottle: 54.50
           }
         }
