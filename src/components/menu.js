@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addToAddCart } from '../actions';
 
+import Cart from './cart';
 import Items from '../data/items';
 import './menu.css';
 
@@ -11,9 +15,10 @@ class Menu extends Component {
 	}
 
 	handleClick(brand, price, size) {
-		console.log("brand: ", brand)
-		console.log("price: ", price)
-		console.log("size: ", size)
+		// console.log("brand: ", brand)
+		// console.log("price: ", price)
+		// console.log("size: ", size)
+		this.props.addToAddCart(brand, price, size);
 	}
 	// this will go through Data/items and return the items as butons able to be clicked.
 	renderButtons(toRender){
@@ -47,7 +52,7 @@ class Menu extends Component {
 
 		return (
 			<div className="container">
-				<div className="tab-content">
+				<div className="col-sm-8 tab-content">
 					<div id="home" className="tab-pane fade">
 						<h2>Home</h2>
 					</div>
@@ -75,9 +80,18 @@ class Menu extends Component {
 						{JSON.stringify(Items.food)}
 					</div>
 				</div>
+				<div className="col-sm-4">
+					<Cart />
+				</div>
 			</div>
 		)
 	}
 }
 
-export default Menu;
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({ addToAddCart }, dispatch)
+}
+	// return { cart: state.cart.all }
+
+// export default connect(mapStateToProps, { addToAddCart })(Menu);
+export default connect(null, mapDispatchToProps)(Menu);
