@@ -8,6 +8,8 @@ I'm still in the process of developing the app pretty frequently. So anything yo
 
 ## Reason for creating:
 
+Originally was going to be for a companies use, but after they backed out I decided it would be really good practice to complete it. Plus, if they come back and want it later, it will be finished.
+
 ### Problem
 
 A club was writing down all of their club patrons orders on a slip of paper. Everything from drinks, food, their club dues, etc. Nothing was on the internet, simply a piece of paper. If that paper was lost, so was all of their information.
@@ -30,6 +32,8 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 
 - Add ability to add to specific user.
 - Add ability to add users.
+- If you add multiples of the same item, it should say something like "sm X #" instead of adding multiple rows of items.
+- Add ability to 
 - Make all of the information blocked unless you have the information to sign in with.
 - Ability for users to see their carts - via sign in type thing.
 - Add more todo things.
@@ -37,6 +41,8 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 ## Difficulties and things learned.
 
 Wrapping my head around multiple stores applying to each other.
+
+I really wasn't sure how I should structure the data for either users or the items information, so I will definitely need to learn some stuff on databases to get a better feel for them.
 
 ## Bugs
 
