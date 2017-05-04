@@ -14,3 +14,10 @@ export function addToAddCart(brand, price, size) {
 		size
 	};
 }
+
+export function removeFromAddCart(index) {
+	return {
+		type: REMOVE_FROM_ADDCART,
+		index
+	};
+}

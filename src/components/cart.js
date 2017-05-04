@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import addToAddCart from '../actions';
+import { addToAddCart, removeFromAddCart } from '../actions';
 
 class Cart extends Component {
+	RemoveFromAddCartButton(index){
+		this.props.removeFromAddCart(index);
+	}
+
 	RenderAddCart() {
 		return this.props.cart.map((items, i) => {
 			return (
@@ -19,7 +23,7 @@ class Cart extends Component {
 							<h4>{items.price}</h4>
 						</div>
 						<div className="col-xs-2">
-							<button className="btn">X</button>
+							<button className="btn" onClick={() => this.RemoveFromAddCartButton(i)}>X</button>
 						</div>
 					</div>
 				</li>
@@ -48,4 +52,4 @@ function mapStateToProps(state) {
 	return { cart: state.cart }
 }
 
-export default connect(mapStateToProps, { addToAddCart })(Cart);
+export default connect(mapStateToProps, { removeFromAddCart })(Cart);

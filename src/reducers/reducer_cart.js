@@ -1,4 +1,4 @@
-import { PUSH_TO_ADDCART } from '../actions';
+import { PUSH_TO_ADDCART, REMOVE_FROM_ADDCART } from '../actions';
 
 const INITIAL_STATE = []
 
@@ -10,6 +10,8 @@ export default function(state = INITIAL_STATE, action) {
 				price: action.price,
 				size: action.size
 			}];
+		case REMOVE_FROM_ADDCART:
+			return state.filter((item, index) => index != action.index);
 		default:
 			return state;
 	}
