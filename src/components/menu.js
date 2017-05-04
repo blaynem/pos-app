@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { addToAddCart } from '../actions';
 
 import Cart from './cart';
+import UserSelect from './user_select';
 import Items from '../data/items';
 import './menu.css';
 
@@ -52,7 +53,10 @@ class Menu extends Component {
 
 		return (
 			<div className="container">
-				<div className="col-sm-8 tab-content">
+				<div className="col-sm-2">
+					<UserSelect />
+				</div>
+				<div className="col-sm-6 tab-content">
 					<div id="home" className="tab-pane fade">
 						<h2>Home</h2>
 					</div>

@@ -46,7 +46,7 @@ I really wasn't sure how I should structure the data for either users or the ite
 
 ## Bugs
 
-- Will update as I come across more bugs.
+- If you add items to the cart, then select a user, then select another item, the cart is reset. (I know this has to do with how I have the reducer set up, need to look into it.)
 
 ## Thanks
 Also thanks to everyone in the Reactiflux discord chat who helped.
