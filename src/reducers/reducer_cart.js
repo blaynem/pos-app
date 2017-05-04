@@ -11,7 +11,7 @@ export default function(state = INITIAL_STATE, action) {
 				size: action.size
 			}];
 		case REMOVE_FROM_ADDCART:
-			return state.filter((item, index) => index != action.index);
+			return state.filter((item, index) => index !== action.index);
 		default:
 			return state;
 	}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { addToAddCart, removeFromAddCart } from '../actions';
+import { removeFromAddCart } from '../actions';
 
 class Cart extends Component {
 	RemoveFromAddCartButton(index){
