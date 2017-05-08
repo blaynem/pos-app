@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { chooseUserCart } from '../actions';
 
-import Users from '../data/users';
-
 class UserSelect extends Component {
 	// on clicking a user, it will choose their cart for the items added in menu to be placed in.
 	chooseUserCart(name){
@@ -13,7 +11,7 @@ class UserSelect extends Component {
 
 	// renders all the users inside of /data/users
 	renderUsers(){
-		return Users.map((users, i) => {
+		return this.props.users.map((users, i) => {
 			return (
 				<li key={users + i} className="list-group-item" onClick={() => this.chooseUserCart(users.first_name)}>
 					<h4>#{users.id} {users.first_name} {users.last_name}</h4>
@@ -35,8 +33,13 @@ class UserSelect extends Component {
 	}
 }
 
+// maps the state of all usersData to the prop users.
+function mapStateToProps(state){
+	return { users: state.usersData }
+}
+
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ chooseUserCart }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(UserSelect);
+export default connect(mapStateToProps, mapDispatchToProps)(UserSelect);

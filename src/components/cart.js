@@ -4,8 +4,19 @@ import { connect } from 'react-redux';
 import { removeFromAddCart } from '../actions';
 
 class Cart extends Component {
+	// removes an item in the "add Cart"
 	RemoveFromAddCartButton(index){
 		this.props.removeFromAddCart(index);
+	}
+
+	// on add to users cart button press, will do just that - neat.
+	AddToUsersCart(items) {
+		if (this.props.user == null) {
+			console.log("no")
+		} else {
+			console.log(this.props.user)
+			console.log(items)
+		}
 	}
 
 	// renders username inside of the cart
@@ -13,7 +24,7 @@ class Cart extends Component {
 		if (this.props.user == null){
 			return "<Select a Users name to Add to their Cart>"
 		} else {
-			return `Add To ${this.props.user}'s Cart`
+			return `Adding Items To ${this.props.user}'s Cart`
 		}
 	}
 	// this renders the 'addToAddCart' cart.. need to rename this stuff.
@@ -40,6 +51,13 @@ class Cart extends Component {
 		})
 	}
 
+	// renders the add to user cart button, only if there are items in the cart.
+	renderAddToCartButton() {
+		if (this.props.cart.length >= 0){
+			return <button className="btn" onClick={() => this.AddToUsersCart(this.props.cart)}>Add all to Cart</button>
+		}
+	}
+
 	render() {
 		return (
 			<div>
@@ -50,6 +68,9 @@ class Cart extends Component {
 					<ul className="list-group">
 						{this.RenderAddCart()}
 					</ul>
+				</div>
+				<div style={{textAlign: "center"}}>
+					{this.renderAddToCartButton()}
 				</div>
 			</div>
 		)

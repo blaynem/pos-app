@@ -1,4 +1,15 @@
-import { PUSH_TO_ADDCART, REMOVE_FROM_ADDCART, CHOOSE_USER_CART } from '../actions';
+import { PUSH_TO_ADDCART, REMOVE_FROM_ADDCART, CHOOSE_USER_CART, GET_ALL_USERS } from '../actions';
+
+// gets all users data - i.e. cart information
+export function getAllUsers(state = [], action){
+	switch(action.type) {
+		case GET_ALL_USERS:
+			console.log(action.usersData)
+			return action.usersData
+		default:
+			return state
+	}
+}
 
 // adds items that are selected into the side cart
 export function addCartReducer(state = [] , action) {
