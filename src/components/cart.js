@@ -71,7 +71,7 @@ class Cart extends Component {
 function mapStateToProps(state) {
 	// return bindActionCreators({ addToAddCart }, dispatch)
 	// im really not sure why I need to do state.cart.user_chosen, I shouldn't need to get the user from cart.
-	return { cart: state.cart, user: state.cart.user_chosen }
+	return { cart: state.cart, user: state.user }
 }
 
 export default connect(mapStateToProps, { removeFromAddCart })(Cart);
