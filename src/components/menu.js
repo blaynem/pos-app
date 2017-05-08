@@ -12,15 +12,14 @@ class Menu extends Component {
 	constructor(props){
 		super(props)
 
-		this.handleClick = this.handleClick.bind(this);
+		this.addToAddCart = this.addToAddCart.bind(this);
 	}
 
-	handleClick(brand, price, size) {
-		// console.log("brand: ", brand)
-		// console.log("price: ", price)
-		// console.log("size: ", size)
+	// on presing an item in the menu, it will add that item to the "add to user cart"
+	addToAddCart(brand, price, size) {
 		this.props.addToAddCart(brand, price, size);
 	}
+
 	// this will go through Data/items and return the items as butons able to be clicked.
 	renderButtons(toRender){
 		return toRender.map((item, index) => {
@@ -29,7 +28,7 @@ class Menu extends Component {
 				// returns the size and price of the brands item
 				return Object.keys(item.price).map((size, i) => {
 					return(
-						<button onClick={() => this.handleClick(item.brand, item.price[size], size)} className="btn btn-default" key={item.brand + item.price[size] + i}>
+						<button onClick={() => this.addToAddCart(item.brand, item.price[size], size)} className="btn btn-default" key={item.brand + item.price[size] + i}>
 							<div>{item.brand}</div>
 							<div>{size}: {item.price[size]}</div>
 						</button>
@@ -38,7 +37,7 @@ class Menu extends Component {
 			} else {
 				// if it doesnt have multiple prices, will return correctly
 				return(
-						<button onClick={() => this.handleClick(item.brand, item.price, "bottle")} className="btn btn-default" key={item.brand + item.price + index}>
+						<button onClick={() => this.addToAddCart(item.brand, item.price, "bottle")} className="btn btn-default" key={item.brand + item.price + index}>
 							<div>{item.brand}</div>
 							<div>{item.price}</div>
 						</button>
@@ -95,7 +94,5 @@ class Menu extends Component {
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ addToAddCart }, dispatch)
 }
-	// return { cart: state.cart.all }
 
-// export default connect(mapStateToProps, { addToAddCart })(Menu);
 export default connect(null, mapDispatchToProps)(Menu);

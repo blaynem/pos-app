@@ -1,8 +1,7 @@
 import { PUSH_TO_ADDCART, REMOVE_FROM_ADDCART, CHOOSE_USER_CART } from '../actions';
 
-const INITIAL_STATE = []
-
-export function addCartReducer(state = INITIAL_STATE, action) {
+// adds items that are selected into the side cart
+export function addCartReducer(state = [] , action) {
 	switch(action.type) {
 		case PUSH_TO_ADDCART:
 			return [ ...state, {
@@ -18,6 +17,7 @@ export function addCartReducer(state = INITIAL_STATE, action) {
 	}
 }
 
+// changes selected user for the addCart
 export function userSelect(state = null , action) {
 	switch(action.type){
 		case CHOOSE_USER_CART:

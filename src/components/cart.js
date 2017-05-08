@@ -8,28 +8,17 @@ class Cart extends Component {
 		this.props.removeFromAddCart(index);
 	}
 
+	// renders username inside of the cart
 	RenderUsersName(){
 		if (this.props.user == null){
-			return "<Select a Users name to Add to Cart>"
+			return "<Select a Users name to Add to their Cart>"
 		} else {
 			return `Add To ${this.props.user}'s Cart`
 		}
 	}
 	// this renders the 'addToAddCart' cart.. need to rename this stuff.
-	// for some reason I could no longer get just the 'this.props.cart', so i needed to do the Object.values.
 	RenderAddCart() {
-		// console.log("this.props.cart", this.props.cart)
-		// console.log("this.props.cart[0]", this.props.cart[0])
-		// console.log("this.props.cart[1]", this.props.cart[1])
-		// console.log("this.props.cart[2]", this.props.cart[2])
-		// console.log("object.values", Object.values(this.props.cart))
-		return Object.values(this.props.cart).map((items, i) => {
-			// if you dont check that items != null, it will break
-			if (items != null){
-				// if you don't check that items.whatever == null, it will throw up an empty list item
-				if (items.brand == null){
-					return null
-				}
+		return this.props.cart.map((items, i) => {
 				return (
 					<li key={items + i} className="list-group-item">
 						<div className="row">
@@ -48,7 +37,6 @@ class Cart extends Component {
 						</div>
 					</li>
 				)
-			}
 		})
 	}
 
@@ -68,9 +56,8 @@ class Cart extends Component {
 	}
 }
 
+// maps the state of state.cart and state.user to props of just cart and user.
 function mapStateToProps(state) {
-	// return bindActionCreators({ addToAddCart }, dispatch)
-	// im really not sure why I need to do state.cart.user_chosen, I shouldn't need to get the user from cart.
 	return { cart: state.cart, user: state.user }
 }
 
