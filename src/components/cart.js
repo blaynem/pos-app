@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 import { removeFromAddCart, addToUsersCart } from '../actions';
 
 class Cart extends Component {
+	constructor(props){
+		super(props)
+
+		this.state = { errorDisplay: "none" }
+	}
+
 	// removes an item in the "add Cart"
 	RemoveFromAddCartButton(index){
 		this.props.removeFromAddCart(index);
@@ -13,16 +19,20 @@ class Cart extends Component {
 	AddToUsersCartButton(userId, items) {
 		const { user, addToUsersCart, cart } = this.props
 		if (cart.length <= 0 ){
-			console.log("nothing in cart")
-			if (user == null) {
-				alert("Please add a user")
-			} else {
-				addToUsersCart(user.userId, cart)
-				// This takes the length of the cart, and then runs the RemoveFromAddCartButton function on the zeroth index
-				// for every item in the cart. Might be better way for doing this, but why create another action if this works.
-				cart.forEach((item) => {this.RemoveFromAddCartButton(0)})
-			}
+			alert("nothing in cart")
+			return;
 		}
+		if (user == null) {
+			// if no user is selected, will allow the error message to be shown.
+			this.setState({ errorDisplay: "" })
+			return;
+		}
+		// This runs the addtoUsersCart action which adds all items in the addCart to the users cart.
+		addToUsersCart(user.userId, cart)
+		this.setState({ errorDisplay: "none" })
+		// This takes the length of the cart, and then runs the RemoveFromAddCartButton function on the zeroth index
+		// for every item in the cart. Might be better way for doing this, but why create another action if this works.
+		cart.forEach((item) => {this.RemoveFromAddCartButton(0)})
 	}
 
 	// renders username inside of the cart
@@ -66,6 +76,13 @@ class Cart extends Component {
 	}
 
 	render() {
+
+		const noUserError = {
+			color:"red",
+			textAlign:"center",
+			display: this.state.errorDisplay
+		}
+
 		return (
 			<div>
 				<div>
@@ -78,6 +95,9 @@ class Cart extends Component {
 				</div>
 				<div style={{textAlign: "center"}}>
 					{this.renderAddToCartButton()}
+				</div>
+				<div>
+					<p style={noUserError}>No User Selected</p>
 				</div>
 			</div>
 		)
