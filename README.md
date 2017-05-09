@@ -37,12 +37,13 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 - If you add multiples of the same item, it should say something like "sm X #" instead of adding multiple rows of items.
 - Add ability to add to specific user.
 - Add ability to add users.
-- Add more todo things.
 - Ability for users to see their carts - via sign in type thing.
+- Add more todo things.
 - ~~AddToCart~~
 
 ## Long Term Goals
 - Make all of the information blocked unless you have the information to sign in with.
+- - Will allow users to sign in. If they are admin, can do adding to cart things. If they're just a regular user, can only view their cart.
 - Finish the Food section
 - Throw it all in AWS
 
@@ -54,7 +55,7 @@ I really wasn't sure how I should structure the data for either users or the ite
 
 ## Bugs
 
-- Pressing "Add all to Cart" button while cart is empty but user is chosen will run the functions - shouldn't do anything. (Actually the button disappears if there is items in cart, but it should probably not do anything if cart is empty anyway.)
+- ~~Pressing "Add all to Cart" button while cart is empty but user is chosen will run the functions - shouldn't do anything. (Actually the button disappears if there is items in cart, but it should probably not do anything if cart is empty anyway.)~~
 - ~~If you add items to the cart, then select a user, then select another item, the cart is reset.~~
 - ~~If you add items to cart, select a new user, then try to delete an item from cart, you get an error.~~
 
