@@ -8,7 +8,9 @@ I'm still in the process of developing the app pretty frequently. So anything yo
 
 ## Reason for creating:
 
-Originally was going to be for a companies use, but after they backed out I decided it would be really good practice to complete it. Plus, if they come back and want it later, it will be finished.
+Originally was going to be for a companies use, but after they backed out I decided it would be really good practice to complete it. 
+
+The applications I build are more advanced version of previous Apps I created so I can keep building my knowledge. This one is expanding on redux stores, and will eventually be useful for learning more AWS/Node.
 
 ### Problem
 
@@ -35,12 +37,14 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 - If you add multiples of the same item, it should say something like "sm X #" instead of adding multiple rows of items.
 - Add ability to add to specific user.
 - Add ability to add users.
-- Add ability to 
-- Make all of the information blocked unless you have the information to sign in with.
-- Ability for users to see their carts - via sign in type thing.
 - Add more todo things.
-- AddToCart
+- Ability for users to see their carts - via sign in type thing.
+- ~~AddToCart~~
+
+## Long Term Goals
+- Make all of the information blocked unless you have the information to sign in with.
 - Finish the Food section
+- Throw it all in AWS
 
 ## Difficulties and things learned.
 
