@@ -5,7 +5,16 @@ import UserSelect from './user_select';
 
 			// {users.cart.map((item, i) => {return <p key={item + i}>{i}. {item.brand}</p>})}
 class UsersCartOverview extends Component {
-	
+	getTotal(cart) {
+		let total= 0;
+
+		cart.forEach((cartItem) => {
+			return total += cartItem.price
+		})
+
+		return total
+	}
+
 	FindSelectedUser() {
 		const { users, user } = this.props;
 		if (user === null) {
@@ -24,7 +33,7 @@ class UsersCartOverview extends Component {
 					{this.RenderCartItems(selectedUser)}
 				</ul>
 				<div>
-					<p>Total Price:</p>
+					<p>Total Price: ${this.getTotal(selectedUser.cart).toFixed(2)}</p>
 				</div>
 			</div>
 		)	
