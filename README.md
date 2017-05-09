@@ -43,7 +43,7 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 
 ## Long Term Goals
 - Make all of the information blocked unless you have the information to sign in with.
-- - Will allow users to sign in. If they are admin, can do adding to cart things. If they're just a regular user, can only view their cart.
+  - Will allow users to sign in. If they are admin, can do adding to cart things. If they're just a regular user, can only view their cart.
 - Finish the Food section
 - Throw it all in AWS
 
