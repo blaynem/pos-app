@@ -42,9 +42,10 @@ export function chooseUserCart(user) {
 	};
 }
 
-export function addToUsersCart(items) {
+export function addToUsersCart(user, items) {
 	return {
 		type: ADD_TO_USERS_CART,
+		user,
 		items
 	}
 }

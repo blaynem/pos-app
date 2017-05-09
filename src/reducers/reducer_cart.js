@@ -1,4 +1,4 @@
-import { PUSH_TO_ADDCART, REMOVE_FROM_ADDCART, CHOOSE_USER_CART, GET_ALL_USERS } from '../actions';
+import { PUSH_TO_ADDCART, REMOVE_FROM_ADDCART, CHOOSE_USER_CART, GET_ALL_USERS, ADD_TO_USERS_CART } from '../actions';
 
 // gets all users data - i.e. cart information
 export function getAllUsers(state = [], action){
@@ -32,6 +32,21 @@ export function userSelect(state = null , action) {
 	switch(action.type){
 		case CHOOSE_USER_CART:
 			return action.user
+		default:
+			return state
+	}
+}
+
+// will add items in cart to specific users cart
+export function addToUsersCart(state = [], action) {
+	switch(action.type){
+		case ADD_TO_USERS_CART:
+			console.log("user: ", action.user, "items: ", action.items)
+			return [ ...state, {
+				user: action.user,
+				items: action.items
+			}
+		];
 		default:
 			return state
 	}

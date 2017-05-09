@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { removeFromAddCart } from '../actions';
+import { removeFromAddCart, addToUsersCart } from '../actions';
 
 class Cart extends Component {
 	// removes an item in the "add Cart"
@@ -11,6 +11,7 @@ class Cart extends Component {
 
 	// on add to users cart button press, will do just that - neat.
 	AddToUsersCart(items) {
+		this.props.addToUsersCart("steve", "farts")
 		if (this.props.user == null) {
 			console.log("no")
 		} else {
@@ -79,7 +80,7 @@ class Cart extends Component {
 
 // maps the state of state.cart and state.user to props of just cart and user.
 function mapStateToProps(state) {
-	return { cart: state.cart, user: state.user }
+	return { cart: state.cart, user: state.user, usersCart: state.usersCart }
 }
 
-export default connect(mapStateToProps, { removeFromAddCart })(Cart);
+export default connect(mapStateToProps, { removeFromAddCart, addToUsersCart })(Cart);
