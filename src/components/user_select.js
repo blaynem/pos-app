@@ -14,8 +14,7 @@ class UserSelect extends Component {
 		return this.props.users.map((users, i) => {
 			return (
 				<li key={users + i} className="list-group-item" onClick={() => this.chooseUserCart(users.first_name, users.id)}>
-					<h4>#{users.id} {users.first_name} {users.last_name}</h4>
-					{users.cart.map((item, i) => {return <p key={item + i}>{i}. {item.brand}</p>})}
+					<h4>{users.first_name} {users.last_name}</h4>
 				</li>
 			)
 		});
@@ -24,7 +23,6 @@ class UserSelect extends Component {
 	render() {
 		return (
 			<div>
-				<h2>Users</h2>
 				<ul className="list-group">
 					{this.renderUsers()}
 				</ul>

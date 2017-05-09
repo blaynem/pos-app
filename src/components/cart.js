@@ -41,7 +41,7 @@ class Cart extends Component {
 	RenderUsersName(){
 		const { user } = this.props;
 		if (user == null){
-			return "<Select a Users name to Add to their Cart>"
+			return "<Select a User>"
 		} else {
 			return `Adding Items To ${user.userName}'s Cart`
 		}
@@ -99,7 +99,7 @@ class Cart extends Component {
 		return (
 			<div>
 				<div>
-					<h3>{this.RenderUsersName()}</h3>
+					<h3 style={{textAlign:"center"}}>{this.RenderUsersName()}</h3>
 				</div>
 				<div>
 					<ul className="list-group">

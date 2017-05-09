@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { addToAddCart } from '../actions';
 
 import Cart from './cart';
+import UsersCartOverview from './users_cart_overview';
 import UserSelect from './user_select';
 import Items from '../data/items';
 import './menu.css';
@@ -74,24 +75,44 @@ class Menu extends Component {
 	render() {
 		return (
 			<div className="container">
-				<div className="col-sm-2">
-					<UserSelect />
-				</div>
-				<div className="col-sm-6 tab-content">
+				<div className="row">
+				<div className="col-xs-12 tab-content">
 					<div id="home" className="tab-pane fade">
 						<h2>Home</h2>
 					</div>
-					<div id="drink" className="tab-pane fade in active">
-						<h2>Alcohol</h2>
-						{this.renderAllCategories()}
+
+					<div id="drink" className="tab-pane fade">
+						<div className="col-sm-3">
+							<h2>Users</h2>
+							<UserSelect />
+						</div>
+						<div className="col-xs-5">
+							<h2>Alcohol</h2>
+							{this.renderAllCategories()}
+						</div>
+						<div className="col-xs-4">
+							<Cart />
+						</div>
 					</div>
+
 					<div id="food" className="tab-pane fade">
-						<h2>Food</h2>
-						{JSON.stringify(Items.food)}
+						<div className="col-sm-3">
+							<h2>Users</h2>
+							<UserSelect />
+						</div>
+						<div className="col-xs-5">
+							<h2>Food</h2>
+							{JSON.stringify(Items.food)}
+						</div>
+						<div className="col-xs-4">
+							<Cart />
+						</div>
+					</div>
+
+					<div id="users" className="tab-pane fade in active">
+						<UsersCartOverview />
 					</div>
 				</div>
-				<div className="col-sm-4">
-					<Cart />
 				</div>
 			</div>
 		)
