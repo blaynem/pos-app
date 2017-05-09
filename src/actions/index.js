@@ -35,17 +35,18 @@ export function removeFromAddCart(index) {
 	};
 }
 
-export function chooseUserCart(user) {
+export function chooseUserCart(userName, userId) {
 	return {
 		type: CHOOSE_USER_CART,
-		user
+		userName,
+		userId
 	};
 }
 
-export function addToUsersCart(user, items) {
+export function addToUsersCart(userId, items) {
 	return {
 		type: ADD_TO_USERS_CART,
-		user,
+		userId,
 		items
 	}
 }

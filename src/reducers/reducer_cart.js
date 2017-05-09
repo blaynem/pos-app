@@ -1,10 +1,23 @@
 import { PUSH_TO_ADDCART, REMOVE_FROM_ADDCART, CHOOSE_USER_CART, GET_ALL_USERS, ADD_TO_USERS_CART } from '../actions';
 
 // gets all users data - i.e. cart information
-export function getAllUsers(state = [], action){
+export function allUsersData(state = [], action){
 	switch(action.type) {
 		case GET_ALL_USERS:
-			return action.usersData
+			return action.usersData;
+		case ADD_TO_USERS_CART:
+			console.log("pressing add button", "user: ", action.userId, "items: ", action.items)
+			console.log("state: ", state)
+			state.map((item) => {
+				if (item.id === action.userId){
+					console.log("yes", item.id, item.cart)
+				}
+			})
+			return [ ...state, {
+				userId: action.userId,
+				items: action.items
+			}
+		];
 		default:
 			return state
 	}
@@ -31,22 +44,7 @@ export function addCartReducer(state = [] , action) {
 export function userSelect(state = null , action) {
 	switch(action.type){
 		case CHOOSE_USER_CART:
-			return action.user
-		default:
-			return state
-	}
-}
-
-// will add items in cart to specific users cart
-export function addToUsersCart(state = [], action) {
-	switch(action.type){
-		case ADD_TO_USERS_CART:
-			console.log("user: ", action.user, "items: ", action.items)
-			return [ ...state, {
-				user: action.user,
-				items: action.items
-			}
-		];
+			return { userName: action.userName, userId: action.userId }
 		default:
 			return state
 	}

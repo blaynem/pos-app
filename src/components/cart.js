@@ -10,8 +10,9 @@ class Cart extends Component {
 	}
 
 	// on add to users cart button press, will do just that - neat.
-	AddToUsersCart(items) {
-		this.props.addToUsersCart("steve", "farts")
+	AddToUsersCart(userId, items) {
+		// accepts userId, and all info in cart
+		this.props.addToUsersCart(this.props.user.userId, this.props.cart)
 		if (this.props.user == null) {
 			console.log("no")
 		} else {
@@ -25,7 +26,7 @@ class Cart extends Component {
 		if (this.props.user == null){
 			return "<Select a Users name to Add to their Cart>"
 		} else {
-			return `Adding Items To ${this.props.user}'s Cart`
+			return `Adding Items To ${this.props.user.userName}'s Cart`
 		}
 	}
 	// this renders the 'addToAddCart' cart.. need to rename this stuff.
@@ -80,7 +81,7 @@ class Cart extends Component {
 
 // maps the state of state.cart and state.user to props of just cart and user.
 function mapStateToProps(state) {
-	return { cart: state.cart, user: state.user, usersCart: state.usersCart }
+	return { cart: state.cart, user: state.user }
 }
 
 export default connect(mapStateToProps, { removeFromAddCart, addToUsersCart })(Cart);
