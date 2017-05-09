@@ -7,30 +7,31 @@ class Cart extends Component {
 	constructor(props){
 		super(props)
 
-		this.state = { errorDisplay: "none" }
+		this.state = { userErrorDisplay: "none", emptyCartErrorDisplay: "none" }
 	}
 
 	// removes an item in the "add Cart"
 	RemoveFromAddCartButton(index){
 		this.props.removeFromAddCart(index);
+		this.setState({ emptyCartErrorDisplay: "none" })
 	}
 
 	// on add to users cart button press, will do just that - neat.
 	AddToUsersCartButton(userId, items) {
 		const { user, addToUsersCart, cart } = this.props
 		if (cart.length <= 0 ){
-			alert("nothing in cart")
+			this.setState({ emptyCartErrorDisplay: "" })
 			return;
 		}
 		if (user == null) {
 			// if no user is selected, will allow the error message to be shown.
-			this.setState({ errorDisplay: "" })
+			this.setState({ userErrorDisplay: "" })
 			return;
 		}
 		// This runs the addtoUsersCart action which adds all items in the addCart to the users cart.
 		addToUsersCart(user.userId, cart)
 		this.props.removeCurrentUserFromCart()
-		this.setState({ errorDisplay: "none" })
+		this.setState({ userErrorDisplay: "none" })
 		// This takes the length of the cart, and then runs the RemoveFromAddCartButton function on the zeroth index
 		// for every item in the cart. Might be better way for doing this, but why create another action if this works.
 		cart.forEach((item) => {this.RemoveFromAddCartButton(0)})
@@ -71,16 +72,28 @@ class Cart extends Component {
 
 	// renders the add to user cart button, only if there are items in the cart.
 	renderAddToCartButton() {
+		const emptyCartError = {
+			color:"red",
+			textAlign:"center",
+			display: this.state.emptyCartErrorDisplay
+		}
+
 		if (this.props.cart.length >= 0){
-			return <button className="btn" onClick={() => this.AddToUsersCartButton(this.props.cart)}>Add all to Cart</button>
+			return (
+				<div>
+					<button className="btn" onClick={() => this.AddToUsersCartButton(this.props.cart)}>Add all to Cart</button>
+					{!this.props.cart.length > 0 && <p style={emptyCartError}>Nothing In Cart</p>}
+				</div>
+			)
 		}
 	}
 
 	render() {
+
 		const noUserError = {
 			color:"red",
 			textAlign:"center",
-			display: this.state.errorDisplay
+			display: this.state.userErrorDisplay
 		}
 
 		return (
