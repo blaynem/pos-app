@@ -10,23 +10,28 @@ class Cart extends Component {
 	}
 
 	// on add to users cart button press, will do just that - neat.
-	AddToUsersCart(userId, items) {
-		// accepts userId, and all info in cart
-		this.props.addToUsersCart(this.props.user.userId, this.props.cart)
-		if (this.props.user == null) {
-			console.log("no")
-		} else {
-			console.log(this.props.user)
-			console.log(items)
+	AddToUsersCartButton(userId, items) {
+		const { user, addToUsersCart, cart } = this.props
+		if (cart.length <= 0 ){
+			console.log("nothing in cart")
+			if (user == null) {
+				alert("Please add a user")
+			} else {
+				addToUsersCart(user.userId, cart)
+				// This takes the length of the cart, and then runs the RemoveFromAddCartButton function on the zeroth index
+				// for every item in the cart. Might be better way for doing this, but why create another action if this works.
+				cart.forEach((item) => {this.RemoveFromAddCartButton(0)})
+			}
 		}
 	}
 
 	// renders username inside of the cart
 	RenderUsersName(){
-		if (this.props.user == null){
+		const { user } = this.props;
+		if (user == null){
 			return "<Select a Users name to Add to their Cart>"
 		} else {
-			return `Adding Items To ${this.props.user.userName}'s Cart`
+			return `Adding Items To ${user.userName}'s Cart`
 		}
 	}
 	// this renders the 'addToAddCart' cart.. need to rename this stuff.
@@ -56,7 +61,7 @@ class Cart extends Component {
 	// renders the add to user cart button, only if there are items in the cart.
 	renderAddToCartButton() {
 		if (this.props.cart.length >= 0){
-			return <button className="btn" onClick={() => this.AddToUsersCart(this.props.cart)}>Add all to Cart</button>
+			return <button className="btn" onClick={() => this.AddToUsersCartButton(this.props.cart)}>Add all to Cart</button>
 		}
 	}
 

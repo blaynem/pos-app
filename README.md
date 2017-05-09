@@ -54,6 +54,7 @@ I really wasn't sure how I should structure the data for either users or the ite
 
 ## Bugs
 
+- Pressing "Add all to Cart" button while cart is empty but user is chosen will run the functions - shouldn't do anything. (Actually the button disappears if there is items in cart, but it should probably not do anything if cart is empty anyway.)
 - ~~If you add items to the cart, then select a user, then select another item, the cart is reset.~~
 - ~~If you add items to cart, select a new user, then try to delete an item from cart, you get an error.~~
 
