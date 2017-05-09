@@ -38,6 +38,7 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 - Ability for users to see their carts - via sign in type thing.
 - Add more todo things.
 - AddToCart
+- Finish the Food section
 
 ## Difficulties and things learned.
 

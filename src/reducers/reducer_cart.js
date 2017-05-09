@@ -4,7 +4,6 @@ import { PUSH_TO_ADDCART, REMOVE_FROM_ADDCART, CHOOSE_USER_CART, GET_ALL_USERS }
 export function getAllUsers(state = [], action){
 	switch(action.type) {
 		case GET_ALL_USERS:
-			console.log(action.usersData)
 			return action.usersData
 		default:
 			return state

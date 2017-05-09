@@ -9,19 +9,44 @@ import Items from '../data/items';
 import './menu.css';
 
 class Menu extends Component {
-	constructor(props){
-		super(props)
+	// don't think I actually need this.
+	// constructor(props){
+	// 	super(props)
 
-		this.addToAddCart = this.addToAddCart.bind(this);
-	}
+	// 	this.addToAddCart = this.addToAddCart.bind(this);
+	// }
 
 	// on presing an item in the menu, it will add that item to the "add to user cart"
 	addToAddCart(brand, price, size) {
 		this.props.addToAddCart(brand, price, size);
 	}
 
-	// this will go through Data/items and return the items as butons able to be clicked.
-	renderButtons(toRender){
+	// runs through all of data / Items.alcohol and, assuming you didn't mess up the JSON like I did,
+	// will then call pass that info down to the renderCategory.
+	// If looking at data, this gives you the info of Items > Alcohol > (all categories of Alcohol (beer/liquor))
+	renderAllCategories() {
+		return Object.keys(Items.alcohol).map((itemType) => {
+			const itemSubType = Object.keys(Items.alcohol[itemType])
+			return itemSubType.map((items) => {
+				return this.renderCategory(Items.alcohol[itemType][items], items)
+			})
+		})
+	}
+
+	// renderCategory will then go through all of Items > Alcohol > (all categories of Alcohol (beer/liquor))
+	// render the type of alcohol that it is, e.g. Bottles (of beer), and then run the renderButtons function
+	renderCategory(toRender, alcoholType){
+		return (
+			<div>
+				<h4>{alcoholType}</h4>
+				{this.renderButtons(toRender)}
+			</div>
+		)
+	}
+
+	// renderButtons goes through Items > Alcohol > categories (i.e. Beer) > subCategory (i.e. Bottles)
+	// then maps through to render the subCategories as buttons to be clicked.
+	renderButtons(toRender) {
 		return toRender.map((item, index) => {
 			// if Data/items/price has more than one price i.e. has a small/large price, it will return buttons for each
 			if (Object.keys(item.price).length > 1) {
@@ -47,9 +72,6 @@ class Menu extends Component {
 	}
 
 	render() {
-		// gets rid of needing to do 'Items.alcohol.beer.tap', simple cleanup
-		const { beer, liquor } = Items.alcohol
-
 		return (
 			<div className="container">
 				<div className="col-sm-2">
@@ -61,22 +83,7 @@ class Menu extends Component {
 					</div>
 					<div id="drink" className="tab-pane fade in active">
 						<h2>Alcohol</h2>
-						<div>
-							<h4>tap</h4>
-							{this.renderButtons(beer.tap)}
-						</div>
-						<div>
-							<h4>bottle</h4>
-							{this.renderButtons(beer.bottle)}
-						</div>
-						<div>
-							<h4>vodka</h4>
-							{this.renderButtons(liquor.vodka)}
-						</div>
-						<div>
-							<h4>tequila</h4>
-							{this.renderButtons(liquor.tequila)}
-						</div>
+						{this.renderAllCategories()}
 					</div>
 					<div id="food" className="tab-pane fade">
 						<h2>Food</h2>
