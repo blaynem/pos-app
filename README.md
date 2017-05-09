@@ -30,9 +30,11 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 
 ## Todo
 
+- Add search function for users.
+- Create a scrolling box around users so the page isn't gigantic from having a ton of users.
+- If you add multiples of the same item, it should say something like "sm X #" instead of adding multiple rows of items.
 - Add ability to add to specific user.
 - Add ability to add users.
-- If you add multiples of the same item, it should say something like "sm X #" instead of adding multiple rows of items.
 - Add ability to 
 - Make all of the information blocked unless you have the information to sign in with.
 - Ability for users to see their carts - via sign in type thing.
