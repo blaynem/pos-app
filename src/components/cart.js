@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { removeFromAddCart, addToUsersCart } from '../actions';
+import { removeFromAddCart, addToUsersCart, removeCurrentUserFromCart } from '../actions';
 
 class Cart extends Component {
 	constructor(props){
@@ -29,6 +29,7 @@ class Cart extends Component {
 		}
 		// This runs the addtoUsersCart action which adds all items in the addCart to the users cart.
 		addToUsersCart(user.userId, cart)
+		this.props.removeCurrentUserFromCart()
 		this.setState({ errorDisplay: "none" })
 		// This takes the length of the cart, and then runs the RemoveFromAddCartButton function on the zeroth index
 		// for every item in the cart. Might be better way for doing this, but why create another action if this works.
@@ -76,7 +77,6 @@ class Cart extends Component {
 	}
 
 	render() {
-
 		const noUserError = {
 			color:"red",
 			textAlign:"center",
@@ -97,7 +97,7 @@ class Cart extends Component {
 					{this.renderAddToCartButton()}
 				</div>
 				<div>
-					<p style={noUserError}>No User Selected</p>
+					{!this.props.user && <p style={noUserError}>No User Selected</p>}
 				</div>
 			</div>
 		)
@@ -109,4 +109,4 @@ function mapStateToProps(state) {
 	return { cart: state.cart, user: state.user }
 }
 
-export default connect(mapStateToProps, { removeFromAddCart, addToUsersCart })(Cart);
+export default connect(mapStateToProps, { removeFromAddCart, addToUsersCart, removeCurrentUserFromCart })(Cart);

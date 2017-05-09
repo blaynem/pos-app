@@ -1,4 +1,11 @@
-import { PUSH_TO_ADDCART, REMOVE_FROM_ADDCART, CHOOSE_USER_CART, GET_ALL_USERS, ADD_TO_USERS_CART } from '../actions';
+import { 
+	PUSH_TO_ADDCART,
+	REMOVE_FROM_ADDCART,
+	CHOOSE_USER_CART,
+	REMOVE_CURRENT_USER_FROM_CART,
+	GET_ALL_USERS,
+	ADD_TO_USERS_CART 
+} from '../actions';
 
 // gets all users data - i.e. cart information
 export function allUsersData(state = [], action){
@@ -41,6 +48,8 @@ export function userSelect(state = null , action) {
 	switch(action.type){
 		case CHOOSE_USER_CART:
 			return { userName: action.userName, userId: action.userId }
+		case REMOVE_CURRENT_USER_FROM_CART:
+			return null
 		default:
 			return state
 	}
