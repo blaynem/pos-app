@@ -8,16 +8,12 @@ export function allUsersData(state = [], action){
 		case ADD_TO_USERS_CART:
 			console.log("pressing add button", "user: ", action.userId, "items: ", action.items)
 			console.log("state: ", state)
-			state.map((item) => {
-				if (item.id === action.userId){
-					console.log("yes", item.id, item.cart)
+			return [ ...state.map(item => {
+				if (item.id === action.userId) {
+					item = { ...item, cart: item.cart.concat(action.items)}
 				}
-			})
-			return [ ...state, {
-				userId: action.userId,
-				items: action.items
-			}
-		];
+				return item;
+			})]
 		default:
 			return state
 	}
