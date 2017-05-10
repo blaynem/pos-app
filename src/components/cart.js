@@ -43,7 +43,7 @@ class Cart extends Component {
 		if (user == null){
 			return "<Select a User>"
 		} else {
-			return `Adding Items To ${user.userName}'s Cart`
+			return `Add To ${user.userName}'s Cart`
 		}
 	}
 	// this renders the 'addToAddCart' cart.. need to rename this stuff.
@@ -52,16 +52,16 @@ class Cart extends Component {
 				return (
 					<li key={items + i} className="list-group-item">
 						<div className="row">
-							<div className="col-xs-4">
+							<div className="col-xs-4 col-sm-4">
 								<h4>{items.brand}</h4>
 							</div>
-							<div className="col-xs-3">
+							<div className="col-xs-3 col-sm-3">
 								<h4>{items.size}</h4>
 							</div>
-							<div className="col-xs-3">
+							<div className="col-xs-2 col-sm-3">
 								<h4>{items.price}</h4>
 							</div>
-							<div className="col-xs-2">
+							<div className="col-xs-2 col-sm-2">
 								<button className="btn" onClick={() => this.RemoveFromAddCartButton(i)}>X</button>
 							</div>
 						</div>

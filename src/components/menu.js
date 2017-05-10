@@ -74,34 +74,33 @@ class Menu extends Component {
 
 	render() {
 		return (
-			<div className="container">
-				<div className="row">
-				<div className="col-xs-12 tab-content">
+			<div style={{margin:0}} className="row">
+				<div className="tab-content">
 					<div id="home" className="tab-pane fade">
-						<h2>Home</h2>
+						<h3>Home</h3>
 					</div>
 
-					<div id="drink" className="tab-pane fade">
-						<div className="col-sm-3">
-							<h2>Users</h2>
+					<div id="drink" className="tab-pane fade in active">
+						<div className="col-xs-6 col-sm-3">
+							<h3>Users</h3>
 							<UserSelect />
 						</div>
-						<div className="col-xs-5">
-							<h2>Alcohol</h2>
-							{this.renderAllCategories()}
-						</div>
-						<div className="col-xs-4">
+						<div className="col-xs-6 col-sm-push-5 col-sm-4">
 							<Cart />
+						</div>
+						<div className="col-xs-12 col-sm-pull-4 col-sm-5">
+							<h3>Alcohol</h3>
+							{this.renderAllCategories()}
 						</div>
 					</div>
 
 					<div id="food" className="tab-pane fade">
 						<div className="col-sm-3">
-							<h2>Users</h2>
+							<h3>Users</h3>
 							<UserSelect />
 						</div>
 						<div className="col-xs-5">
-							<h2>Food</h2>
+							<h3>Food</h3>
 							{JSON.stringify(Items.food)}
 						</div>
 						<div className="col-xs-4">
@@ -109,10 +108,9 @@ class Menu extends Component {
 						</div>
 					</div>
 
-					<div id="users" className="tab-pane fade in active">
+					<div id="users" className="tab-pane fade">
 						<UsersCartOverview />
 					</div>
-				</div>
 				</div>
 			</div>
 		)
