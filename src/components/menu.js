@@ -10,13 +10,6 @@ import Items from '../data/items';
 import './menu.css';
 
 class Menu extends Component {
-	// don't think I actually need this.
-	// constructor(props){
-	// 	super(props)
-
-	// 	this.addToAddCart = this.addToAddCart.bind(this);
-	// }
-
 	// on presing an item in the menu, it will add that item to the "add to user cart"
 	addToAddCart(brand, price, size) {
 		this.props.addToAddCart(brand, price, size);

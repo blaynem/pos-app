@@ -33,6 +33,9 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 ## Todo
 
 - When a user is selected, it should highlight the cell.
+- Modify items button inside cart.
+- Modify all items prices. (Discounts, etc.)
+- Add dates to purchases.
 - Add search function for users.
 - Create a scrolling box around users so the page isn't gigantic from having a ton of users.
 - If you add multiples of the same item, it should say something like "sm X #" instead of adding multiple rows of items.
@@ -40,6 +43,7 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 - Add ability to add users.
 - Ability for users to see their carts - via sign in type thing.
 - Add more todo things.
+- 
 - ~~AddToCart~~
 
 ## Long Term Goals
@@ -47,6 +51,7 @@ After downloading, just click an item you want to add to the cart, and it'll be 
   - Will allow users to sign in. If they are admin, can do adding to cart things. If they're just a regular user, can only view their cart.
 - Finish the Food section
 - Throw it all in AWS
+- Localization
 
 ## Difficulties and things learned.
 

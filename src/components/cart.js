@@ -78,7 +78,7 @@ class Cart extends Component {
 			display: this.state.emptyCartErrorDisplay
 		}
 
-		if (this.props.cart.length >= 0){
+		if (this.props.cart.length > 0){
 			return (
 				<div>
 					<button className="btn" onClick={() => this.AddToUsersCartButton(this.props.cart)}>Add all to Cart</button>
