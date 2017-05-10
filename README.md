@@ -32,6 +32,7 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 
 ## Todo
 
+- When a user is selected, it should highlight the cell.
 - Add search function for users.
 - Create a scrolling box around users so the page isn't gigantic from having a ton of users.
 - If you add multiples of the same item, it should say something like "sm X #" instead of adding multiple rows of items.

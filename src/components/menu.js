@@ -95,16 +95,16 @@ class Menu extends Component {
 					</div>
 
 					<div id="food" className="tab-pane fade">
-						<div className="col-sm-3">
+						<div className="col-xs-6 col-sm-3">
 							<h3>Users</h3>
 							<UserSelect />
 						</div>
-						<div className="col-xs-5">
+						<div className="col-xs-6 col-sm-push-5 col-sm-4">
+							<Cart />
+						</div>
+						<div className="col-xs-12 col-sm-pull-4 col-sm-5">
 							<h3>Food</h3>
 							{JSON.stringify(Items.food)}
-						</div>
-						<div className="col-xs-4">
-							<Cart />
 						</div>
 					</div>
 
