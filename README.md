@@ -32,19 +32,20 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 
 ## Todo
 
-- Add who it's made by and stuff on bottom.. Might be nice for people to visit and know it's made by me.
+- Create a scrolling box around users so the page isn't gigantic from having a ton of users.
+	- Edit scroll so it only shows if certain amount of users are seen
+- Add ability to add users.
 - When a user is selected, it should highlight the cell.
 - Modify items button inside cart.
 - Modify all items prices. (Discounts, etc.)
 - Add dates to purchases.
-- Create a scrolling box around users so the page isn't gigantic from having a ton of users.
 - If you add multiples of the same item, it should say something like "sm X #" instead of adding multiple rows of items.
-- Add ability to add to specific user.
-- Add ability to add users.
 - Ability for users to see their carts - via sign in type thing.
 - Add more todo things.
+- ~~Add ability to add to specific user.~~
 - ~~Add search function for users.~~
 - ~~AddToCart~~
+- ~~Add who it's made by and stuff on bottom.. Might be nice for people to visit and know it's made by me.~~
 
 ## Long Term Goals
 - Make all of the information blocked unless you have the information to sign in with.

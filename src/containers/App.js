@@ -15,8 +15,18 @@ class App extends Component {
 	}
 
   render() {
+    const madeByStyles = {
+      textAlign:"center",
+      background: "#eee",
+      margin:"0"
+    }
+    
     return (
       <div style={{paddingLeft: 0, paddingRight: 0}} className="container-fluid">
+        <div>
+          <h4 style={madeByStyles}>Application created by: <a href="http://blaynemarjama.surge.sh" target="_blank">Blayne Marjama</a></h4>
+          <h4 style={madeByStyles}>Source Code Available on <a href="https://github.com/blaynem/pos-app" target="_blank">Github</a></h4>
+        </div>
         <Header />
         <Menu />
       </div>

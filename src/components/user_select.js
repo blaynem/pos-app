@@ -3,15 +3,21 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { chooseUserCart } from '../actions';
 
+import './user_select.css';
+
 class UserSelect extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = { searchTerm: '' }
+		this.state = { searchTerm: '', userIndex: null }
 		this.onInputChange = this.onInputChange.bind(this)
 	}
+
+	// on clicking a user, it will select that list items index, and set it to userIndex's state,
+	// allowing me to render different class styles for a selected list item
 	// on clicking a user, it will choose their cart for the items added in menu to be placed in.
-	chooseUserCart(name, userId){
+	chooseUserCart(name, userId, i){
+		this.setState({ userIndex: i })
 		this.props.chooseUserCart(name, userId);
 	}
 
@@ -27,8 +33,10 @@ class UserSelect extends Component {
 			const full_name = (name.first_name + " " + name.last_name)
 			return (full_name.toLowerCase().includes(this.state.searchTerm.toLowerCase()));
 		}).map((users, i) => {
+			// sets class depending on if this.state.userIndex is equal to the index or not.
+			const listItemClass = (this.state.userIndex === i ? "list-group-item active" : "list-group-item")
 			return (
-				<li key={users + i} className="list-group-item" onClick={() => this.chooseUserCart(users.first_name, users.id)}>
+				<li key={users + i} className={listItemClass} onClick={() => this.chooseUserCart(users.first_name, users.id, i)}>
 					<h4 style={{textTransform:"capitalize"}}>{users.first_name} {users.last_name}</h4>
 				</li>
 			)
@@ -46,16 +54,18 @@ class UserSelect extends Component {
 						value={this.state.searchTerm}
 						onChange={this.onInputChange}/>
 				</div>
-				<ul className="list-group">
-					<li className="list-group-item">
-						<h4 style={{display:"inline-block"}}>Add New User</h4>
-						<button 
-							style={{width:"15%"}}
-							className="btn btn-default pull-right"
-							onClick={() => alert("this don't work yet fam, soon tho.")}>+</button>
-					</li>
-					{this.renderUsers()}
-				</ul>
+				<div id="usersScroll">
+					<ul className="list-group">
+						<li className="list-group-item">
+							<h4 style={{display:"inline-block"}}>Add New User</h4>
+							<button 
+								style={{width:"15%"}}
+								className="btn btn-default pull-right"
+								onClick={() => alert("this don't work yet fam, soon tho.")}>+</button>
+						</li>
+						{this.renderUsers()}
+					</ul>
+				</div>
 			</div>
 		)
 	}
