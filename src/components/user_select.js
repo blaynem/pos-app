@@ -29,7 +29,7 @@ class UserSelect extends Component {
 		}).map((users, i) => {
 			return (
 				<li key={users + i} className="list-group-item" onClick={() => this.chooseUserCart(users.first_name, users.id)}>
-					<h4>{users.first_name} {users.last_name}</h4>
+					<h4 style={{textTransform:"capitalize"}}>{users.first_name} {users.last_name}</h4>
 				</li>
 			)
 		})

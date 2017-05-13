@@ -99,7 +99,7 @@ class Cart extends Component {
 		return (
 			<div>
 				<div>
-					<h3 style={{textAlign:"center"}}>{this.RenderUsersName()}</h3>
+					<h3 style={{textAlign:"center", textTransform:"capitalize"}}>{this.RenderUsersName()}</h3>
 				</div>
 				<div>
 					<ul className="list-group">
