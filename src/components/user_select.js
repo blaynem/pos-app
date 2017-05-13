@@ -9,7 +9,12 @@ class UserSelect extends Component {
 	constructor(props){
 		super(props);
 
-		this.state = { searchTerm: '', userIndex: null }
+		this.state = {
+			userSearchInput:'',
+			userIndex: null,
+			addUserFirstNameInput: "",
+			addUserLastNameInput: ""
+		}
 		this.onInputChange = this.onInputChange.bind(this)
 	}
 
@@ -21,17 +26,20 @@ class UserSelect extends Component {
 		this.props.chooseUserCart(name, userId);
 	}
 
+	// refactored to allow multiple inputs to be handled depends on the targets name attribute
 	onInputChange(e){
-		this.setState({ searchTerm: e.target.value })
+		const target = e.target
+		const name = target.name
+		this.setState({ [name]: target.value })
 	}
 
 	// renders all the users inside of /data/users
 	renderUsers(){
-		// filters out any of the names that do not include this.state.searchTerm
+		// filters out any of the names that do not include this.state.userSearchInput
 		return this.props.users.filter((name) => {
 			// concat first/last into full name with a space so it will not filter out names with spaces
 			const full_name = (name.first_name + " " + name.last_name)
-			return (full_name.toLowerCase().includes(this.state.searchTerm.toLowerCase()));
+			return (full_name.toLowerCase().includes(this.state.userSearchInput.toLowerCase()));
 		}).map((users, i) => {
 			// sets class depending on if this.state.userIndex is equal to the index or not.
 			const listItemClass = (this.state.userIndex === i ? "list-group-item active" : "list-group-item")
@@ -43,15 +51,22 @@ class UserSelect extends Component {
 		})
 	}
 
+	// opens the new user modal
+	newUserButton() {
+		const { addUserFirstNameInput, addUserLastNameInput } = this.state
+		console.log(addUserFirstNameInput, addUserLastNameInput)
+	}
+
 	render() {
 		return (
 			<div>
 				<div className="col-xs-12 input-group">
 					<input
 						type="text"
+						name="userSearchInput"
 						className="form-control"
 						placeholder="Search Users"
-						value={this.state.searchTerm}
+						value={this.state.userSearchInput}
 						onChange={this.onInputChange}/>
 				</div>
 				<div id="usersScroll">
@@ -61,10 +76,55 @@ class UserSelect extends Component {
 							<button 
 								style={{width:"15%"}}
 								className="btn btn-default pull-right"
-								onClick={() => alert("this don't work yet fam, soon tho.")}>+</button>
+								data-toggle="modal"
+								data-target="#newUserModal">+</button>
 						</li>
 						{this.renderUsers()}
 					</ul>
+				</div>
+				<div className="modal fade" id="newUserModal" tabIndex="-1" role="dialog" aria-hidden="true">
+					<div className="modal-dialog" role="document">
+				    <div className="modal-content">
+				      <div className="modal-header">
+				        <h4 className="modal-title" id="exampleModalLabel">Add New User</h4>
+				        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+							<div className="modal-body">
+								<div className="container-fluid">
+									<div className="row">
+										<div className="col-xs-6">
+											<label>First Name</label>
+											<input
+												type="text"
+												name="addUserFirstNameInput"
+												className="form-control"
+												placeholder="First Name"
+												value={this.state.addUserFirstNameInput}
+												onChange={this.onInputChange}
+												/>
+										</div>
+										<div className="col-xs-6">
+											<label>Last Name</label>
+											<input 
+												type="text"
+												name="addUserLastNameInput"
+												className="form-control"
+												placeholder="Last Name"
+												value={this.state.addUserLastNameInput}
+												onChange={this.onInputChange}
+												/>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="modal-footer">
+				        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+				        <button type="button" className="btn btn-primary" onClick={() => this.newUserButton()}>Add User</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		)
