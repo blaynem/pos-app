@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 You can test out the current build **[here](http://blaynepos.surge.sh/)**. Thank you so much to surge.sh for the beautiful ability of hosting sites like this.
 
 Quick Gif of App in action:
-![alt text](https://github.com/blaynem/pos-app/tree/master/public/images/pos-app.gif)
+![Point of Sale Application](http://i.imgur.com/MaWD1pW.gif)
 
 ## Still in Development
 
