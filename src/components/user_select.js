@@ -24,6 +24,10 @@ class UserSelect extends Component {
 		return (
 			<div>
 				<ul className="list-group">
+					<li className="list-group-item">
+						<h4 style={{display:"inline-block"}}>Add New User</h4>
+						<button style={{width:"15%"}} className="btn btn-default pull-right" onClick={() => alert("this don't work yet fam, soon tho.")}>+</button>
+					</li>
 					{this.renderUsers()}
 				</ul>
 			</div>

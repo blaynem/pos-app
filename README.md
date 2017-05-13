@@ -32,6 +32,7 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 
 ## Todo
 
+- Add who it's made by and stuff on bottom.. Might be nice for people to visit and know it's made by me.
 - When a user is selected, it should highlight the cell.
 - Modify items button inside cart.
 - Modify all items prices. (Discounts, etc.)
@@ -43,7 +44,6 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 - Add ability to add users.
 - Ability for users to see their carts - via sign in type thing.
 - Add more todo things.
-- 
 - ~~AddToCart~~
 
 ## Long Term Goals
