@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { chooseUserCart } from '../actions';
+import { chooseUserCart, createNewUser } from '../actions';
 
 import './user_select.css';
 
@@ -54,7 +54,7 @@ class UserSelect extends Component {
 	// opens the new user modal
 	newUserButton() {
 		const { addUserFirstNameInput, addUserLastNameInput } = this.state
-		console.log(addUserFirstNameInput, addUserLastNameInput)
+		this.props.createNewUser(addUserFirstNameInput, addUserLastNameInput)
 	}
 
 	render() {
@@ -137,7 +137,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ chooseUserCart }, dispatch)
+	return bindActionCreators({ chooseUserCart, createNewUser }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSelect);

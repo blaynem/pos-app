@@ -13,6 +13,8 @@ export const CHOOSE_USER_CART = "CHOOSE_USER_CART";
 export const REMOVE_CURRENT_USER_FROM_CART = "REMOVE_CURRENT_USER_FROM_CART";
 // this will add all items in the cart to the selected users cart.
 export const ADD_TO_USERS_CART = "ADD_TO_USERS_CART";
+// this will allow you to create a new user
+export const CREATE_NEW_USER = "CREATE_NEW_USER";
 
 export function getUsers(usersData) {
 	return {
@@ -56,5 +58,13 @@ export function addToUsersCart(userId, items) {
 		type: ADD_TO_USERS_CART,
 		userId,
 		items
+	}
+}
+
+export function createNewUser(firstName, lastName) {
+	return {
+		type: CREATE_NEW_USER,
+		firstName,
+		lastName
 	}
 }
