@@ -1,8 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-You can test it out [here](http://blaynepos.surge.sh/). Thank you so much to surge.sh for the beautiful ability of hosting sites like this.
+#Current Build
 
-# Still in Development
+You can test out the current build **[here](http://blaynepos.surge.sh/)**. Thank you so much to surge.sh for the beautiful ability of hosting sites like this.
+
+Quick Gif of App in action:
+![alt text](https://github.com/blaynem/pos-app/tree/master/public/images/pos-app.gif)
+
+## Still in Development
 
 I'm still in the process of developing the app pretty frequently. So anything you see now is definitely not a finished product.
 
