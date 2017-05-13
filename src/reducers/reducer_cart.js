@@ -18,7 +18,7 @@ export function allUsersData(state = [], action){
 		// actions: firstName, lastName
 		// need to include an empty cart array and and id
 		case CREATE_NEW_USER:
-			return [ ...state, { first_name: action.firstName, last_name: action.lastName, cart: []} ]
+			return [ ...state, { first_name: action.firstName, last_name: action.lastName, cart: [], id: state.length + 1 } ]
 		// actions: userId, items
 		case ADD_TO_USERS_CART:
 			return [ ...state.map(item => {
