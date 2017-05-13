@@ -33,7 +33,7 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 ## Todo
 
 - Create a scrolling box around users so the page isn't gigantic from having a ton of users.
-	- Edit scroll so it only shows if certain amount of users are seen
+	- Edit scroll so it only shows if certain amount of users are seen.
 - Add ability to add users.
 - When a user is selected, it should highlight the cell.
 - Modify items button inside cart.
@@ -62,6 +62,7 @@ I really wasn't sure how I should structure the data for either users or the ite
 
 ## Bugs
 
+- Scrollbar is still visible when users are filtered to the point of scrollbar not being needed.
 - Seems to be a disconnect between where the users selection is scrolled and different pages. 
 	- Example: On the 'alcohol' tab you search for 'anne' then select anne-marie. You then click on the 'food' tab and your users list is back to initial state, so you scroll down and click a user 'Kim Kardashian'. You then click on the 'All User Carts Tab', again Users list is back to initial state. So you click 'Steve Jobs'. Once you return to the previous tabs, they will still look how you left them (i.e. scrolled, filtered, item selected) but the cart will be completely different. Jarring experience. 1/10, 3/10 with rice.
 - After clicking a list item, the class will turn to active, but if you then search for a different person, the names will change in the list, but the class will still be applied to the same index, but with different names. Is really confusing.
