@@ -1,10 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-#Current Build
+# Current Build
 
 You can test out the current build **[here](http://blaynepos.surge.sh/)**. Thank you so much to surge.sh for the beautiful ability of hosting sites like this.
 
-Quick Gif of App in action:
+Quick Gif of App in action (This is an older build):
 ![Point of Sale Application](http://i.imgur.com/MaWD1pW.gif)
 
 ## Still in Development
