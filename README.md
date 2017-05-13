@@ -37,13 +37,13 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 - Modify items button inside cart.
 - Modify all items prices. (Discounts, etc.)
 - Add dates to purchases.
-- Add search function for users.
 - Create a scrolling box around users so the page isn't gigantic from having a ton of users.
 - If you add multiples of the same item, it should say something like "sm X #" instead of adding multiple rows of items.
 - Add ability to add to specific user.
 - Add ability to add users.
 - Ability for users to see their carts - via sign in type thing.
 - Add more todo things.
+- ~~Add search function for users.~~
 - ~~AddToCart~~
 
 ## Long Term Goals
