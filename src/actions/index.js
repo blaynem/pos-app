@@ -73,7 +73,6 @@ export function createNewUser(firstName, lastName) {
 	}
 
 	const id = guid()
-	console.log(id)
 
 	return {
 		type: CREATE_NEW_USER,
