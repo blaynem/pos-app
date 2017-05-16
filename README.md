@@ -39,24 +39,27 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 
 - Create a scrolling box around users so the page isn't gigantic from having a ton of users.
 	- Edit scroll so it only shows if certain amount of users are seen.
-- ~~Add ability to add users.~~
-	- Add error handling for user with that name already being created.
-		- Will need to remove the modal closing from "Add User" button once this is completed.
-	- ~~Need to add error handling for empty inputs.~~
-	- ~~Do not allow numbers~~
-	- ~~Do not allow spaces~~
-- Alphabetize users
-- When a user is selected, it should highlight the cell.
+- Add error handling for user with that name already being created.
+	- Will need to remove the modal closing from "Add User" button once this is completed, since modal closes if both first and last name fields are populated.
 - Modify items button inside cart.
 - Modify all items prices. (Discounts, etc.)
 - Add dates to purchases.
 - If you add multiples of the same item, it should say something like "sm X #" instead of adding multiple rows of items.
 - Ability for users to see their carts - via sign in type thing.
 - Add more todo things.
+
+### Todo Completed
+
+- ~~Add ability to add users.~~
+	- ~~Need to add error handling for empty inputs.~~
+	- ~~Do not allow numbers~~
+	- ~~Do not allow spaces~~
 - ~~Add ability to add to specific user.~~
 - ~~Add search function for users.~~
 - ~~AddToCart~~
 - ~~Add who it's made by and stuff on bottom.. Might be nice for people to visit and know it's made by me.~~
+- ~~Alphabetize users~~
+- ~~When a user is selected, it should highlight the cell.~~
 
 ## Long Term Goals
 - Make all of the information blocked unless you have the information to sign in with.
