@@ -12,6 +12,7 @@ class UserSelect extends Component {
 		this.state = {
 			userSearchInput:'',
 			userIndex: null,
+			sortByState: "first_name",
 			addUserFirstNameInput: "",
 			addUserLastNameInput: "",
 			emptyFirstNameErrorDisplay: "none",
@@ -41,11 +42,15 @@ class UserSelect extends Component {
 		}
 
 		// this removes the error message upon text being input into the first name box
-		if (name === "addUserFirstNameInput") {
+		// will only be triggered if emptyFirstNameErrorDisplay is set to show, that way it isn't triggered multiple times.
+		if (name === "addUserFirstNameInput" && this.state.emptyFirstNameErrorDisplay === "") {
+			console.log("change state of first name")
 			this.setState({ emptyFirstNameErrorDisplay: "none" })
 		}
 		// this removes the error message upon text being input into the last name box
-		if (name === "addUserLastNameInput") {
+		// will only be triggered if emptyLastNameErrorDisplay is set to show, that way it isn't triggered multiple times.
+		if (name === "addUserLastNameInput" && this.state.emptyLastNameErrorDisplay === "") {
+			console.log("change state of last name")
 			this.setState({ emptyLastNameErrorDisplay: "none" })
 		}
 
@@ -54,14 +59,27 @@ class UserSelect extends Component {
 
 	// renders all the users inside of /data/users
 	renderUsers(){
+		const { sortByState, userSearchInput, userIndex } = this.state
+		// allows you to choose what you're sorting by
+		// will work on first_name or last_name
+		const sortBy = sortByState
+
+		function sortFirstName(a, b) {
+			if ( a[sortBy].toLowerCase() < b[sortBy].toLowerCase() )
+				return -1
+			if ( a[sortBy].toLowerCase() > b[sortBy].toLowerCase() )
+				return 1
+			return 0
+		}
+
 		// filters out any of the names that do not include this.state.userSearchInput
 		return this.props.users.filter((name) => {
 			// concat first/last into full name with a space so it will not filter out names with spaces
 			const full_name = (name.first_name + " " + name.last_name)
-			return (full_name.toLowerCase().includes(this.state.userSearchInput.toLowerCase()));
-		}).map((users, i) => {
+			return (full_name.toLowerCase().includes(userSearchInput.toLowerCase()));
+		}).sort(sortFirstName).map((users, i) => {
 			// sets class depending on if this.state.userIndex is equal to the index or not.
-			const listItemClass = (this.state.userIndex === i ? "list-group-item active" : "list-group-item")
+			const listItemClass = (userIndex === i ? "list-group-item active" : "list-group-item")
 			return (
 				<li key={users + i} className={listItemClass} onClick={() => this.chooseUserCart(users.first_name, users.id, i)}>
 					<h4 style={{textTransform:"capitalize"}}>{users.first_name} {users.last_name}</h4>
@@ -119,6 +137,15 @@ class UserSelect extends Component {
 
 		return (
 			<div>
+				<h3 style={{display:"inline-block"}}>Users</h3>
+				<div style={{marginTop:"20px"}} className="btn-group pull-right">
+					<button
+						className={this.state.sortByState === "first_name" ? "btn btn-primary" : "btn btn-default"}
+						onClick={() => this.setState({ sortByState: "first_name" })}>First</button>
+					<button
+						className={this.state.sortByState === "last_name" ? "btn btn-primary" : "btn btn-default"}
+						onClick={() => this.setState({ sortByState: "last_name" })}>Last</button>
+				</div>
 				<div className="col-xs-12 input-group">
 					<input
 						type="text"

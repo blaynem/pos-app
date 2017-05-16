@@ -75,7 +75,6 @@ class Menu extends Component {
 
 					<div id="drink" className="tab-pane fade in active">
 						<div className="col-xs-6 col-sm-3">
-							<h3>Users</h3>
 							<UserSelect />
 						</div>
 						<div className="col-xs-6 col-sm-push-5 col-sm-4">
@@ -89,7 +88,6 @@ class Menu extends Component {
 
 					<div id="food" className="tab-pane fade">
 						<div className="col-xs-6 col-sm-3">
-							<h3>Users</h3>
 							<UserSelect />
 						</div>
 						<div className="col-xs-6 col-sm-push-5 col-sm-4">
