@@ -51,6 +51,7 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 ### Todo Completed
 
 - ~~Add ability to add users.~~
+	- ~~Added users needs to have new ID's~~
 	- ~~Need to add error handling for empty inputs.~~
 	- ~~Do not allow numbers~~
 	- ~~Do not allow spaces~~

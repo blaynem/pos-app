@@ -62,8 +62,19 @@ export function addToUsersCart(userId, items) {
 }
 
 export function createNewUser(firstName, lastName) {
-	const id = Math.random()* 10 + 1
+	const s4 = () => {
+		return Math.floor((1 + Math.random()) * 0x10000)
+			.toString(16)
+			.substring(1)
+	}
+
+	const guid = () => {
+		return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`
+	}
+
+	const id = guid()
 	console.log(id)
+
 	return {
 		type: CREATE_NEW_USER,
 		firstName,
