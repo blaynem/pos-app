@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUsers } from '../actions';
 
+import UserSelect from '../components/user_select';
 import Users from '../data/users';
 
 class App extends Component {
@@ -28,7 +29,12 @@ class App extends Component {
           <h4 style={madeByStyles}>Source Code Available on <a href="https://github.com/blaynem/pos-app" target="_blank">Github</a></h4>
         </div>
         <Header />
-        <Menu />
+        <div className="col-xs-6 col-sm-3">
+          <UserSelect />
+        </div>
+        <div className="col-xs-6 col-sm-9">
+          <Menu />
+        </div>
       </div>
     );
   }

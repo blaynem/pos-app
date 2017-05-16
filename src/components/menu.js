@@ -5,7 +5,6 @@ import { addToAddCart } from '../actions';
 
 import Cart from './cart';
 import UsersCartOverview from './users_cart_overview';
-import UserSelect from './user_select';
 import Items from '../data/items';
 import './menu.css';
 
@@ -74,26 +73,20 @@ class Menu extends Component {
 					</div>
 
 					<div id="drink" className="tab-pane fade in active">
-						<div className="col-xs-6 col-sm-3">
-							<UserSelect />
-						</div>
-						<div className="col-xs-6 col-sm-push-5 col-sm-4">
+						<div className="col-xs-12 col-sm-push-8 col-sm-4">
 							<Cart />
 						</div>
-						<div className="col-xs-12 col-sm-pull-4 col-sm-5">
+						<div className="col-xs-12 col-sm-pull-4 col-sm-8">
 							<h3>Alcohol</h3>
 							{this.renderAllCategories()}
 						</div>
 					</div>
 
 					<div id="food" className="tab-pane fade">
-						<div className="col-xs-6 col-sm-3">
-							<UserSelect />
-						</div>
-						<div className="col-xs-6 col-sm-push-5 col-sm-4">
+						<div className="col-xs-12 col-sm-push-8 col-sm-4">
 							<Cart />
 						</div>
-						<div className="col-xs-12 col-sm-pull-4 col-sm-5">
+						<div className="col-xs-12 col-sm-pull-4 col-sm-8">
 							<h3>Food</h3>
 							{JSON.stringify(Items.food)}
 						</div>

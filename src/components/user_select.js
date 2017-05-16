@@ -72,12 +72,15 @@ class UserSelect extends Component {
 		}
 
 		// filters out any of the names that do not include this.state.userSearchInput,
-		// then sorts alphabetically
 		return this.props.users.filter((name) => {
 			// concat first/last into full name with a space so it will not filter out names with spaces
 			const full_name = (name.first_name + " " + name.last_name)
 			return (full_name.toLowerCase().includes(userSearchInput.toLowerCase()));
-		}).sort(sortFirstName).map((users, i) => {
+		})
+		// then sorts alphabetically
+		.sort(sortFirstName)
+		// then maps over them to return list items
+		.map((users, i) => {
 			// sets class depending on if this.state.userIndex is equal to the index or not.
 			const listItemClass = (userIndex === i ? "list-group-item active" : "list-group-item")
 			return (

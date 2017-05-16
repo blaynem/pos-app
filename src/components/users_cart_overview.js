@@ -56,11 +56,7 @@ class UsersCartOverview extends Component {
 	render() {
 		return (
 			<div>
-				<div className="col-xs-3">
-					<h2>All Users</h2>
-					<UserSelect />
-				</div>
-				<div className="col-xs-offset-2 col-xs-6">
+				<div className="col-xs-12 col-sm-offset-2 col-sm-8">
 					{this.FindSelectedUser()}
 				</div>
 			</div>
