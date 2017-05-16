@@ -57,7 +57,7 @@ class UserSelect extends Component {
 
 	// renders all the users inside of /data/users
 	renderUsers(){
-		const { sortByState, userSearchInput, userIndex } = this.state
+		const { sortByState, userSearchInput } = this.state
 		// allows you to choose what you're sorting by
 		// will work on first_name or last_name
 		const sortBy = sortByState
@@ -81,8 +81,14 @@ class UserSelect extends Component {
 		.sort(sortFirstName)
 		// then maps over them to return list items
 		.map((users, i) => {
-			// sets class depending on if this.state.userIndex is equal to the users id or not.
-			const listItemClass = (userIndex === users.id ? "list-group-item active" : "list-group-item")
+
+			// sets class of list for initialization
+			let listItemClass = "list-group-item"
+			// if selectedUser != null, it will check if the selected user is = to the users id, if so, will add the active class
+			if (this.props.selectedUser != null){
+				listItemClass = (this.props.selectedUser.userId === users.id ? "list-group-item active" : "list-group-item")
+			}
+
 			return (
 				<li key={users + i} className={listItemClass} onClick={() => this.chooseUserCart(users.first_name, users.id)}>
 					<h4 style={{textTransform:"capitalize"}}>{users.first_name} {users.last_name}</h4>
@@ -224,7 +230,7 @@ class UserSelect extends Component {
 
 // maps the state of all usersData to the prop users.
 function mapStateToProps(state){
-	return { users: state.allUsersData }
+	return { users: state.allUsersData, selectedUser: state.user }
 }
 
 function mapDispatchToProps(dispatch) {
