@@ -33,6 +33,13 @@ class UserSelect extends Component {
 		const target = e.target
 		const name = target.name
 
+		// regex of everything that is not a-zA-z or -
+		const letters = /[^a-zA-Z-]/;
+		// checks if they're trying to input anything that is not alphabetic or a dash
+		if (target.value.match(letters)) {
+			return
+		}
+
 		// this removes the error message upon text being input into the first name box
 		if (name === "addUserFirstNameInput") {
 			this.setState({ emptyFirstNameErrorDisplay: "none" })
@@ -73,6 +80,8 @@ class UserSelect extends Component {
 			if (addUserLastNameInput !== "") {
 				// if both are displayed, then it will submit
 				this.props.createNewUser(addUserFirstNameInput, addUserLastNameInput)
+				// resets both back to empty
+				this.setState({ addUserFirstNameInput: "", addUserLastNameInput: ""})
 				return
 			}
 			// if last name is empty, displays error message
@@ -88,6 +97,7 @@ class UserSelect extends Component {
 	}
 
 	render() {
+		const { addUserFirstNameInput, addUserLastNameInput } = this.state;
 		// error message display for first name
 		const emptyFirstNameError = {
 			color: "red",
@@ -99,6 +109,13 @@ class UserSelect extends Component {
 			display: this.state.emptyLastNameErrorDisplay
 		}
 
+		// will change the "Add User" button to dismiss the modal if both
+		// a first and last name are entered.
+		// Will definitely need to change this once I add erorrs for there being a user with that name
+		let dismissOrNah = ""
+		if (addUserFirstNameInput !== "" && addUserLastNameInput !== "") {
+			dismissOrNah = "modal"
+		}
 
 		return (
 			<div>
@@ -165,7 +182,7 @@ class UserSelect extends Component {
 							</div>
 							<div className="modal-footer">
 				        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-				        <button type="button" className="btn btn-primary" onClick={() => this.newUserButton()}>Add User</button>
+				        <button type="button" className="btn btn-primary" data-dismiss={dismissOrNah} onClick={() => this.newUserButton()}>Add User</button>
 							</div>
 						</div>
 					</div>
