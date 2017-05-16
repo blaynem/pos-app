@@ -39,8 +39,11 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 
 - Create a scrolling box around users so the page isn't gigantic from having a ton of users.
 	- Edit scroll so it only shows if certain amount of users are seen.
-- Add ability to add users.
-	- Need to add error handling for empty inputs.
+- ~~Add ability to add users.~~
+	- ~~Need to add error handling for empty inputs.~~
+	- Do not allow numbers
+	- Do not allow spaces
+- Alphabetize users
 - When a user is selected, it should highlight the cell.
 - Modify items button inside cart.
 - Modify all items prices. (Discounts, etc.)

@@ -13,7 +13,9 @@ class UserSelect extends Component {
 			userSearchInput:'',
 			userIndex: null,
 			addUserFirstNameInput: "",
-			addUserLastNameInput: ""
+			addUserLastNameInput: "",
+			emptyFirstNameErrorDisplay: "none",
+			emptyLastNameErrorDisplay: "none"
 		}
 		this.onInputChange = this.onInputChange.bind(this)
 	}
@@ -30,6 +32,16 @@ class UserSelect extends Component {
 	onInputChange(e){
 		const target = e.target
 		const name = target.name
+
+		// this removes the error message upon text being input into the first name box
+		if (name === "addUserFirstNameInput") {
+			this.setState({ emptyFirstNameErrorDisplay: "none" })
+		}
+		// this removes the error message upon text being input into the last name box
+		if (name === "addUserLastNameInput") {
+			this.setState({ emptyLastNameErrorDisplay: "none" })
+		}
+
 		this.setState({ [name]: target.value })
 	}
 
@@ -54,10 +66,40 @@ class UserSelect extends Component {
 	// opens the new user modal
 	newUserButton() {
 		const { addUserFirstNameInput, addUserLastNameInput } = this.state
-		this.props.createNewUser(addUserFirstNameInput, addUserLastNameInput)
+
+		// checks if first name field has data - if it doesn't sets error message to display
+		if (addUserFirstNameInput !== "") {
+			// then checks to see if last name field has data - if it doesn't, sets error message to display.
+			if (addUserLastNameInput !== "") {
+				// if both are displayed, then it will submit
+				this.props.createNewUser(addUserFirstNameInput, addUserLastNameInput)
+				return
+			}
+			// if last name is empty, displays error message
+			this.setState({ emptyLastNameErrorDisplay: "" })
+			return 
+		} else if (addUserLastNameInput !== "") {
+			// if first name is empty, displays error message
+			this.setState({ emptyFirstNameErrorDisplay: "" })
+			return
+		}
+		// if both first/last name are empty, displays error message
+		this.setState({ emptyFirstNameErrorDisplay: "", emptyLastNameErrorDisplay: "" })
 	}
 
 	render() {
+		// error message display for first name
+		const emptyFirstNameError = {
+			color: "red",
+			display: this.state.emptyFirstNameErrorDisplay
+		}
+		// error message display for last name
+		const emptyLastNameError = {
+			color: "red",
+			display: this.state.emptyLastNameErrorDisplay
+		}
+
+
 		return (
 			<div>
 				<div className="col-xs-12 input-group">
@@ -104,6 +146,7 @@ class UserSelect extends Component {
 												value={this.state.addUserFirstNameInput}
 												onChange={this.onInputChange}
 												/>
+											<label style={emptyFirstNameError}>Enter First Name</label>
 										</div>
 										<div className="col-xs-6">
 											<label>Last Name</label>
@@ -115,6 +158,7 @@ class UserSelect extends Component {
 												value={this.state.addUserLastNameInput}
 												onChange={this.onInputChange}
 												/>
+											<label style={emptyLastNameError}>Enter Last Name</label>
 										</div>
 									</div>
 								</div>
