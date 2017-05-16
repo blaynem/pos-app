@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import UserSelect from './user_select';
 
 			// {users.cart.map((item, i) => {return <p key={item + i}>{i}. {item.brand}</p>})}
 class UsersCartOverview extends Component {

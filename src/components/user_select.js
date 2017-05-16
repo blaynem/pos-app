@@ -24,8 +24,8 @@ class UserSelect extends Component {
 	// on clicking a user, it will select that list items index, and set it to userIndex's state,
 	// allowing me to render different class styles for a selected list item
 	// on clicking a user, it will choose their cart for the items added in menu to be placed in.
-	chooseUserCart(name, userId, i){
-		this.setState({ userIndex: i })
+	chooseUserCart(name, userId){
+		this.setState({ userIndex: userId })
 		this.props.chooseUserCart(name, userId);
 	}
 
@@ -81,10 +81,10 @@ class UserSelect extends Component {
 		.sort(sortFirstName)
 		// then maps over them to return list items
 		.map((users, i) => {
-			// sets class depending on if this.state.userIndex is equal to the index or not.
-			const listItemClass = (userIndex === i ? "list-group-item active" : "list-group-item")
+			// sets class depending on if this.state.userIndex is equal to the users id or not.
+			const listItemClass = (userIndex === users.id ? "list-group-item active" : "list-group-item")
 			return (
-				<li key={users + i} className={listItemClass} onClick={() => this.chooseUserCart(users.first_name, users.id, i)}>
+				<li key={users + i} className={listItemClass} onClick={() => this.chooseUserCart(users.first_name, users.id)}>
 					<h4 style={{textTransform:"capitalize"}}>{users.first_name} {users.last_name}</h4>
 				</li>
 			)
