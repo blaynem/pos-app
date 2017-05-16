@@ -44,13 +44,11 @@ class UserSelect extends Component {
 		// this removes the error message upon text being input into the first name box
 		// will only be triggered if emptyFirstNameErrorDisplay is set to show, that way it isn't triggered multiple times.
 		if (name === "addUserFirstNameInput" && this.state.emptyFirstNameErrorDisplay === "") {
-			console.log("change state of first name")
 			this.setState({ emptyFirstNameErrorDisplay: "none" })
 		}
 		// this removes the error message upon text being input into the last name box
 		// will only be triggered if emptyLastNameErrorDisplay is set to show, that way it isn't triggered multiple times.
 		if (name === "addUserLastNameInput" && this.state.emptyLastNameErrorDisplay === "") {
-			console.log("change state of last name")
 			this.setState({ emptyLastNameErrorDisplay: "none" })
 		}
 
@@ -64,6 +62,7 @@ class UserSelect extends Component {
 		// will work on first_name or last_name
 		const sortBy = sortByState
 
+		// sorts alphabetically by either first or last name
 		function sortFirstName(a, b) {
 			if ( a[sortBy].toLowerCase() < b[sortBy].toLowerCase() )
 				return -1
@@ -72,7 +71,8 @@ class UserSelect extends Component {
 			return 0
 		}
 
-		// filters out any of the names that do not include this.state.userSearchInput
+		// filters out any of the names that do not include this.state.userSearchInput,
+		// then sorts alphabetically
 		return this.props.users.filter((name) => {
 			// concat first/last into full name with a space so it will not filter out names with spaces
 			const full_name = (name.first_name + " " + name.last_name)
@@ -115,16 +115,16 @@ class UserSelect extends Component {
 	}
 
 	render() {
-		const { addUserFirstNameInput, addUserLastNameInput } = this.state;
+		const { addUserFirstNameInput, addUserLastNameInput, emptyFirstNameErrorDisplay, emptyLastNameErrorDisplay, userSearchInput } = this.state;
 		// error message display for first name
 		const emptyFirstNameError = {
 			color: "red",
-			display: this.state.emptyFirstNameErrorDisplay
+			display: emptyFirstNameErrorDisplay
 		}
 		// error message display for last name
 		const emptyLastNameError = {
 			color: "red",
-			display: this.state.emptyLastNameErrorDisplay
+			display: emptyLastNameErrorDisplay
 		}
 
 		// will change the "Add User" button to dismiss the modal if both
@@ -152,7 +152,7 @@ class UserSelect extends Component {
 						name="userSearchInput"
 						className="form-control"
 						placeholder="Search Users"
-						value={this.state.userSearchInput}
+						value={userSearchInput}
 						onChange={this.onInputChange}/>
 				</div>
 				<div id="usersScroll">
@@ -187,7 +187,7 @@ class UserSelect extends Component {
 												name="addUserFirstNameInput"
 												className="form-control"
 												placeholder="First Name"
-												value={this.state.addUserFirstNameInput}
+												value={addUserFirstNameInput}
 												onChange={this.onInputChange}
 												/>
 											<label style={emptyFirstNameError}>Enter First Name</label>
@@ -199,7 +199,7 @@ class UserSelect extends Component {
 												name="addUserLastNameInput"
 												className="form-control"
 												placeholder="Last Name"
-												value={this.state.addUserLastNameInput}
+												value={addUserLastNameInput}
 												onChange={this.onInputChange}
 												/>
 											<label style={emptyLastNameError}>Enter Last Name</label>
