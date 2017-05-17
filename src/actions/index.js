@@ -54,6 +54,9 @@ export function removeCurrentUserFromCart() {
 }
 
 export function addToUsersCart(userId, items) {
+	const date = new Date()
+	console.log(date)
+
 	return {
 		type: ADD_TO_USERS_CART,
 		userId,

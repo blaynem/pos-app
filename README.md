@@ -28,11 +28,11 @@ Allow them to do exactly the same thing they were doing previously, but now it's
 
 ## Try it out
 
-Clone or download this rep. Inside of the folder directory, run `npm install` and then run `npm start`. Your browser should open to a localhost, and you'll be able to add things to a cart.
+Clone or download this repo. Inside of the folder directory, run `npm install` and then run `npm start`. Your browser should open to a localhost, and you'll be able to add things to a cart.
 
 ### To use
 
-After downloading, just click an item you want to add to the cart, and it'll be there. (Will need to update as project expands.)
+This application acts similar to a Point of Sale System you'd find in a bar/club, with the exception that you're adding users instead of tables. On the left you can select a user who's cart you want to add items to. In the middle, you have items you can add (as of now, only the alcohol tab has items). And on the right you have the items that you'd like to add to the selected users cart. Once added, you can view the users cart inside of the 'All Users Carts' tab.
 
 
 ## Todo

@@ -7,7 +7,8 @@ const users = [
 			{
 				brand: "budlight",
 				price: 2.5,
-				size: "sm"
+				size: "sm",
+				date: ""
 			}
 		]
 	},
@@ -19,12 +20,14 @@ const users = [
 			{
 				brand: "corona",
 				price: 3,
-				size: "bottle"
+				size: "bottle",
+				date: ""
 			},
 			{
 				brand: "budlight",
 				price: 2.5,
-				size: "sm"
+				size: "sm",
+				date: ""
 			}
 		]
 	},
@@ -36,14 +39,15 @@ const users = [
 			{
 				brand: "patron",
 				price: 28.5,
-				size: "bottle"
+				size: "bottle",
+				date: ""
 			}
 		]
 	},
 	{
 		id: "de785f46-63d4-30ad-60d6-b03169282315",
-		first_name: "James",
-		last_name: "Audobon",
+		first_name: "Asa",
+		last_name: "akira",
 		cart: [
 		]
 	},
