@@ -16,7 +16,9 @@ class UserSelect extends Component {
 			addUserFirstNameInput: "",
 			addUserLastNameInput: "",
 			emptyFirstNameErrorDisplay: "none",
-			emptyLastNameErrorDisplay: "none"
+			emptyLastNameErrorDisplay: "none",
+			userExistsErrorDisplay: "none",
+			dismissModal: ""
 		}
 		this.onInputChange = this.onInputChange.bind(this)
 	}
@@ -52,7 +54,7 @@ class UserSelect extends Component {
 			this.setState({ emptyLastNameErrorDisplay: "none" })
 		}
 
-		this.setState({ [name]: target.value })
+		this.setState({ [name]: target.value})
 	}
 
 	// renders all the users inside of /data/users
@@ -101,10 +103,23 @@ class UserSelect extends Component {
 	newUserButton() {
 		const { addUserFirstNameInput, addUserLastNameInput } = this.state
 
+		function findName(name) {
+			if (name.first_name.toLowerCase() === addUserFirstNameInput.toLowerCase() && name.last_name.toLowerCase() === addUserLastNameInput.toLowerCase()){
+				return true
+			}
+		}
+
 		// checks if first name field has data - if it doesn't sets error message to display
 		if (addUserFirstNameInput !== "") {
 			// then checks to see if last name field has data - if it doesn't, sets error message to display.
 			if (addUserLastNameInput !== "") {
+				// checks to see if both the first and last name are already from one user
+				// if so, will present error
+				if (this.props.users.find(findName)){
+					this.setState({ userExistsErrorDisplay: "" })
+					return
+				}
+
 				// if both are displayed, then it will submit
 				this.props.createNewUser(addUserFirstNameInput, addUserLastNameInput)
 				// resets both back to empty
@@ -124,7 +139,8 @@ class UserSelect extends Component {
 	}
 
 	render() {
-		const { addUserFirstNameInput, addUserLastNameInput, emptyFirstNameErrorDisplay, emptyLastNameErrorDisplay, userSearchInput } = this.state;
+		const { addUserFirstNameInput, addUserLastNameInput, emptyFirstNameErrorDisplay,
+						emptyLastNameErrorDisplay, userExistsErrorDisplay, userSearchInput } = this.state;
 		// error message display for first name
 		const emptyFirstNameError = {
 			color: "red",
@@ -135,13 +151,10 @@ class UserSelect extends Component {
 			color: "red",
 			display: emptyLastNameErrorDisplay
 		}
-
-		// will change the "Add User" button to dismiss the modal if both
-		// a first and last name are entered.
-		// Will definitely need to change this once I add erorrs for there being a user with that name
-		let dismissOrNah = ""
-		if (addUserFirstNameInput !== "" && addUserLastNameInput !== "") {
-			dismissOrNah = "modal"
+		// error message for already created user
+		const userExistsError = {
+			color: "red",
+			display: userExistsErrorDisplay
 		}
 
 		return (
@@ -214,11 +227,14 @@ class UserSelect extends Component {
 											<label style={emptyLastNameError}>Enter Last Name</label>
 										</div>
 									</div>
+									<div className="row">
+										<label style={userExistsError}>User already exists</label>
+									</div>
 								</div>
 							</div>
 							<div className="modal-footer">
 				        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-				        <button type="button" className="btn btn-primary" data-dismiss={dismissOrNah} onClick={() => this.newUserButton()}>Add User</button>
+				        <button type="button" className="btn btn-primary" onClick={() => this.newUserButton()}>Add User</button>
 							</div>
 						</div>
 					</div>

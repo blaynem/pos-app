@@ -39,7 +39,7 @@ After downloading, just click an item you want to add to the cart, and it'll be 
 
 - Create a scrolling box around users so the page isn't gigantic from having a ton of users.
 	- Edit scroll so it only shows if certain amount of users are seen.
-- Add error handling for user with that name already being created.
+- ~~Add error handling for user with that name already being created.~~
 	- Will need to remove the modal closing from "Add User" button once this is completed, since modal closes if both first and last name fields are populated.
 - Modify items button inside cart.
 - Modify all items prices. (Discounts, etc.)
