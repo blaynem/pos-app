@@ -39,7 +39,13 @@ class UserSelect extends Component {
 		const name = target.name
 
 		// regex of everything that is not a-zA-z or -
-		const letters = /[^a-zA-Z-]/;
+		let letters = /[^a-zA-Z-]/;
+		
+		// if the targets name is userSearchInput, it will also include spaces
+		if (target.name === "userSearchInput"){
+			letters = /[^a-zA-Z-]\d/;
+		}
+
 		// checks if they're trying to input anything that is not alphabetic or a dash
 		if (target.value.match(letters)) {
 			return
