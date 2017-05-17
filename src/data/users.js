@@ -5,8 +5,10 @@ const users = [
 		last_name: "Clark",
 		cart: [
 			{
+				id: "101a",
 				brand: "budlight",
 				price: 2.5,
+				quantity: 1,
 				size: "sm",
 				date: ""
 			}
@@ -18,16 +20,18 @@ const users = [
 		last_name: "Jobs",
 		cart: [
 			{
+				id: "201b",
 				brand: "corona",
 				price: 3,
-				size: "bottle",
-				date: ""
+				quantity: 3,
+				size: "bottle"
 			},
 			{
+				id: "101a",
 				brand: "budlight",
 				price: 2.5,
-				size: "sm",
-				date: ""
+				quantity: 1,
+				size: "sm"
 			}
 		]
 	},
@@ -37,10 +41,11 @@ const users = [
 		last_name: "Foreman",
 		cart: [
 			{
+				id: "901a",
 				brand: "patron",
 				price: 28.5,
-				size: "bottle",
-				date: ""
+				quantity: 1,
+				size: "bottle"
 			}
 		]
 	},

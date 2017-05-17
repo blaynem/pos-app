@@ -40,6 +40,7 @@ This application acts similar to a Point of Sale System you'd find in a bar/club
 - Create a scrolling box around users so the page isn't gigantic from having a ton of users.
 	- Edit scroll so it only shows if certain amount of users are seen.
 - Modify items button inside cart.
+- Probably need to change how all of the data is structured for items.
 - Modify all items prices. (Discounts, etc.)
 - Add dates to purchases.
 - If you add multiples of the same item, it should say something like "sm X #" instead of adding multiple rows of items.

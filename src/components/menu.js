@@ -10,8 +10,8 @@ import './menu.css';
 
 class Menu extends Component {
 	// on presing an item in the menu, it will add that item to the "add to user cart"
-	addToAddCart(brand, price, size) {
-		this.props.addToAddCart(brand, price, size);
+	addToAddCart(brand, price, size, id) {
+		this.props.addToAddCart(brand, price, size, id);
 	}
 
 	// runs through all of data / Items.alcohol and, assuming you didn't mess up the JSON like I did,
@@ -46,7 +46,7 @@ class Menu extends Component {
 				// returns the size and price of the brands item
 				return Object.keys(item.price).map((size, i) => {
 					return(
-						<button onClick={() => this.addToAddCart(item.brand, item.price[size], size)} className="btn btn-default" key={item.brand + item.price[size] + i}>
+						<button onClick={() => this.addToAddCart(item.brand, item.price[size], size, item.id)} className="btn btn-default" key={item.brand + item.price[size] + i}>
 							<div>{item.brand}</div>
 							<div>{size}: {item.price[size]}</div>
 						</button>
@@ -55,7 +55,7 @@ class Menu extends Component {
 			} else {
 				// if it doesnt have multiple prices, will return correctly
 				return(
-						<button onClick={() => this.addToAddCart(item.brand, item.price, "bottle")} className="btn btn-default" key={item.brand + item.price + index}>
+						<button onClick={() => this.addToAddCart(item.brand, item.price, "bottle", item.id)} className="btn btn-default" key={item.brand + item.price + index}>
 							<div>{item.brand}</div>
 							<div>{item.price}</div>
 						</button>

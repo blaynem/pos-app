@@ -23,12 +23,14 @@ export function getUsers(usersData) {
 	}
 }
 
-export function addToAddCart(brand, price, size) {
+export function addToAddCart(brand, price, size, id) {
 	return {
 		type: PUSH_TO_ADDCART,
 		brand,
 		price,
-		size
+		size,
+		id,
+		quantity: 1
 	};
 }
 

@@ -3,6 +3,7 @@ const items = {
 		beer: {
 	    tap: [
 	      {
+          id: "101a",
 	        brand: "budlight",
 	        price: {
 	          sm: 2.50,
@@ -10,6 +11,7 @@ const items = {
 	        }
 	      },
 	      {
+          id: "201a",
 	        brand: "corona",
 	        price: {
 	          sm: 3.00,
@@ -17,6 +19,7 @@ const items = {
 	        }
 	      },
 	      {
+          id: "301a",
 	        brand: "dos equis",
 	        price: {
 	          sm: 3.00,
@@ -24,6 +27,7 @@ const items = {
 	        }
 	      },
 	      {
+          id: "401a",
 	        brand: "tecate",
 	        price: {
 	          sm: 2.00,
@@ -33,18 +37,22 @@ const items = {
 	    ],
       bottle: [
         {
+          id: "101b",
           brand: "budlight",
           price: 3.00
         },
         {
+          id: "201b",
           brand: "corona",
           price: 3.00
         },
         {
+          id: "301b",
           brand: "dos equis",
           price: 2.00
         },
         {
+          id: "401b",
           brand: "tecate",
           price: 2.00
         }
@@ -53,6 +61,7 @@ const items = {
     liquor: {
       vodka: [
         {
+          id: "501a",
           brand: "grey goose",
           price: {
             shot: 3.00,
@@ -61,6 +70,7 @@ const items = {
           }
         },
         {
+          id: "601a",
           brand: "ciroc",
           price: {
             shot: 4.00,
@@ -69,6 +79,7 @@ const items = {
           }
         },
         {
+          id: "701a",
           brand: "Skyy Vodka",
           price: {
             shot: 2.50,
@@ -77,6 +88,7 @@ const items = {
           }
         },
         {
+          id: "801a",
           brand: "Absolut Vodka",
           price: {
             shot: 3.50,
@@ -87,6 +99,7 @@ const items = {
       ],
       tequila: [
         {
+          id: "901a",
           brand: "patron",
           price: {
             shot: 4.00,
@@ -95,6 +108,7 @@ const items = {
           }
         },
         {
+          id: "1001a",
           brand: "Don Julio",
           price: {
             shot: 3.50,
@@ -103,6 +117,7 @@ const items = {
           }
         },
         {
+          id: "1101a",
           brand: "Tres Agaves",
           price: {
             shot: 5.50,
@@ -111,6 +126,7 @@ const items = {
           }
         },
         {
+          id: "1201a",
           brand: "sauza gold",
           price: {
             shot: 5.50,

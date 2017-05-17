@@ -21,11 +21,11 @@ export function allUsersData(state = [], action){
 			return [ ...state, { first_name: action.firstName, last_name: action.lastName, id: action.id, cart: [] } ]
 		// actions: userId, items
 		case ADD_TO_USERS_CART:
-			return [ ...state.map(item => {
-				if (item.id === action.userId) {
-					item = { ...item, cart: item.cart.concat(action.items)}
+			return [ ...state.map(user => {
+				if (user.id === action.userId) {
+					user = { ...user, cart: user.cart.concat(action.items)}
 				}
-				return item;
+				return user;
 			})]
 		default:
 			return state
@@ -40,7 +40,9 @@ export function addCartReducer(state = [] , action) {
 			return [ ...state, {
 				brand: action.brand,
 				price: action.price,
-				size: action.size
+				size: action.size,
+				id: action.id,
+				quantity: action.quantity
 			}
 		];
 		// actions: index
