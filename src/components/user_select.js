@@ -18,7 +18,9 @@ class UserSelect extends Component {
 			emptyFirstNameErrorDisplay: "none",
 			emptyLastNameErrorDisplay: "none",
 			userExistsErrorDisplay: "none",
-			dismissModal: ""
+			dismissModal: "",
+			newUserAddedFirstName: "",
+			newUserAddedLastName: ""
 		}
 		this.onInputChange = this.onInputChange.bind(this)
 	}
@@ -54,7 +56,12 @@ class UserSelect extends Component {
 			this.setState({ emptyLastNameErrorDisplay: "none" })
 		}
 
-		this.setState({ [name]: target.value})
+		// checks if the error message is currently set to viewable, if it is, will remove it on text being entered
+		if (this.state.userExistsErrorDisplay === ""){
+			this.setState({ userExistsErrorDisplay: "none"})
+		}
+
+		this.setState({ [name]: target.value })
 	}
 
 	// renders all the users inside of /data/users
@@ -99,7 +106,7 @@ class UserSelect extends Component {
 		})
 	}
 
-	// opens the new user modal
+	// this is the button inside new user modal
 	newUserButton() {
 		const { addUserFirstNameInput, addUserLastNameInput } = this.state
 
@@ -123,7 +130,7 @@ class UserSelect extends Component {
 				// if both are displayed, then it will submit
 				this.props.createNewUser(addUserFirstNameInput, addUserLastNameInput)
 				// resets both back to empty
-				this.setState({ addUserFirstNameInput: "", addUserLastNameInput: ""})
+				this.setState({ newUserAddedFirstName: addUserFirstNameInput, newUserAddedLastName: addUserLastNameInput, addUserFirstNameInput: "", addUserLastNameInput: ""})
 				return
 			}
 			// if last name is empty, displays error message
@@ -138,9 +145,11 @@ class UserSelect extends Component {
 		this.setState({ emptyFirstNameErrorDisplay: "", emptyLastNameErrorDisplay: "" })
 	}
 
-	render() {
+	// renders the modal for adding new user
+	renderModal() {
 		const { addUserFirstNameInput, addUserLastNameInput, emptyFirstNameErrorDisplay,
-						emptyLastNameErrorDisplay, userExistsErrorDisplay, userSearchInput } = this.state;
+						emptyLastNameErrorDisplay, userExistsErrorDisplay, newUserAddedFirstName,
+						newUserAddedLastName } = this.state;
 		// error message display for first name
 		const emptyFirstNameError = {
 			color: "red",
@@ -157,6 +166,87 @@ class UserSelect extends Component {
 			display: userExistsErrorDisplay
 		}
 
+		// assigns the modals view to the add a new user screen
+		let modalView = (
+			<div className="row">
+				<div className="col-xs-6">
+					<label>First Name</label>
+					<input
+						type="text"
+						name="addUserFirstNameInput"
+						className="form-control"
+						placeholder="First Name"
+						value={addUserFirstNameInput}
+						onChange={this.onInputChange}
+						/>
+					<label style={emptyFirstNameError}>Enter First Name</label>
+				</div>
+				<div className="col-xs-6">
+					<label>Last Name</label>
+					<input 
+						type="text"
+						name="addUserLastNameInput"
+						className="form-control"
+						placeholder="Last Name"
+						value={addUserLastNameInput}
+						onChange={this.onInputChange}
+						/>
+					<label style={emptyLastNameError}>Enter Last Name</label>
+				</div>
+				<div className="col-xs-12">
+					<label style={userExistsError}>User already exists</label>
+				</div>
+			</div>
+		)
+		// if a new user is succesfully added, it will render the new modal view
+		// saying "Added new user FirstName LastName"
+		if (newUserAddedFirstName !== "" && newUserAddedLastName !== ""){
+			modalView = (
+				<div className="row">
+					<h2 style={{textTransform:"capitalize"}}>User <span style={{color:"#337ab7", fontWeight:"bold"}}>{newUserAddedFirstName} {newUserAddedLastName}</span> added!</h2>
+				</div>
+			)
+		}
+
+		// assigns modalFooter to have both the close and Add User button
+		let modalFooter = (
+			<div className="modal-footer">
+      	<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+      	<button type="button" className="btn btn-primary" onClick={() => this.newUserButton()}>Add User</button>
+      </div>
+		)
+		// if a new user is succesfully add, it will render with only the close button
+		if (newUserAddedFirstName !== "" && newUserAddedLastName !== ""){
+			modalFooter = (
+				<div className="modal-footer">
+        	<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+			)
+		}
+
+		return (
+			<div className="modal fade" id="newUserModal" tabIndex="-1" role="dialog" aria-hidden="true">
+				<div className="modal-dialog" role="document">
+					<div className="modal-content">
+			      <div className="modal-header">
+			        <h4 className="modal-title" id="exampleModalLabel">Add New User</h4>
+			        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+						<div className="modal-body">
+							<div className="container-fluid">
+								{modalView}
+							</div>
+						</div>
+						{modalFooter}
+					</div>
+				</div>
+			</div>
+		)
+	}
+
+	render() {
 		return (
 			<div>
 				<h3 style={{display:"inline-block"}}>Users</h3>
@@ -174,7 +264,7 @@ class UserSelect extends Component {
 						name="userSearchInput"
 						className="form-control"
 						placeholder="Search Users"
-						value={userSearchInput}
+						value={this.state.userSearchInput}
 						onChange={this.onInputChange}/>
 				</div>
 				<div id="usersScroll">
@@ -185,60 +275,13 @@ class UserSelect extends Component {
 								style={{width:"15%"}}
 								className="btn btn-default pull-right"
 								data-toggle="modal"
-								data-target="#newUserModal">+</button>
+								data-target="#newUserModal"
+								onClick={() => this.setState({ newUserAddedFirstName: "", newUserAddedLastName: ""})}>+</button>
 						</li>
 						{this.renderUsers()}
 					</ul>
 				</div>
-				<div className="modal fade" id="newUserModal" tabIndex="-1" role="dialog" aria-hidden="true">
-					<div className="modal-dialog" role="document">
-				    <div className="modal-content">
-				      <div className="modal-header">
-				        <h4 className="modal-title" id="exampleModalLabel">Add New User</h4>
-				        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-							<div className="modal-body">
-								<div className="container-fluid">
-									<div className="row">
-										<div className="col-xs-6">
-											<label>First Name</label>
-											<input
-												type="text"
-												name="addUserFirstNameInput"
-												className="form-control"
-												placeholder="First Name"
-												value={addUserFirstNameInput}
-												onChange={this.onInputChange}
-												/>
-											<label style={emptyFirstNameError}>Enter First Name</label>
-										</div>
-										<div className="col-xs-6">
-											<label>Last Name</label>
-											<input 
-												type="text"
-												name="addUserLastNameInput"
-												className="form-control"
-												placeholder="Last Name"
-												value={addUserLastNameInput}
-												onChange={this.onInputChange}
-												/>
-											<label style={emptyLastNameError}>Enter Last Name</label>
-										</div>
-									</div>
-									<div className="row">
-										<label style={userExistsError}>User already exists</label>
-									</div>
-								</div>
-							</div>
-							<div className="modal-footer">
-				        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-				        <button type="button" className="btn btn-primary" onClick={() => this.newUserButton()}>Add User</button>
-							</div>
-						</div>
-					</div>
-				</div>
+				{this.renderModal()}
 			</div>
 		)
 	}
