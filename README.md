@@ -69,6 +69,8 @@ This application acts similar to a Point of Sale System you'd find in a bar/club
 - Finish the Food section
 - Throw it all in AWS
 - Localization
+- Accessability
+- Test Suite
 
 ## Difficulties and things learned.
 
