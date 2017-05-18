@@ -52,10 +52,13 @@ class Cart extends Component {
 				return (
 					<li key={items + i} className="list-group-item">
 						<div className="row">
-							<div className="col-xs-4 col-sm-4">
+							<div className="col-xs-4 col-sm-3">
 								<h4>{items.brand}</h4>
 							</div>
-							<div className="col-xs-3 col-sm-3">
+							<div className="col-xs-3 col-sm-2">
+								<h4>{items.quantity} x</h4>
+							</div>
+							<div className="col-xs-3 col-sm-2">
 								<h4>{items.size}</h4>
 							</div>
 							<div className="col-xs-2 col-sm-3">

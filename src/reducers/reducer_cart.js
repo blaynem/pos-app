@@ -37,6 +37,11 @@ export function addCartReducer(state = [] , action) {
 	switch(action.type) {
 		// actions: brand, price, size
 		case PUSH_TO_ADDCART:
+			state.map((items) => {
+				if (items.id === action.id && items.size === action.size){
+					console.log("has simiar")
+				}
+			})
 			return [ ...state, {
 				brand: action.brand,
 				price: action.price,
