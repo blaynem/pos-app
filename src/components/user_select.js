@@ -5,6 +5,9 @@ import { chooseUserCart, createNewUser } from '../actions';
 
 import './user_select.css';
 
+import axios from 'axios';
+const ROOT_URL = 'https://1vfqaxaq34.execute-api.us-west-2.amazonaws.com/prod'
+
 class UserSelect extends Component {
 	constructor(props){
 		super(props);
@@ -12,7 +15,7 @@ class UserSelect extends Component {
 		this.state = {
 			userSearchInput:'',
 			userIndex: null,
-			sortByState: "first_name",
+			sortByState: "first",
 			addUserFirstNameInput: "",
 			addUserLastNameInput: "",
 			emptyFirstNameErrorDisplay: "none",
@@ -74,7 +77,7 @@ class UserSelect extends Component {
 	renderUsers(){
 		const { sortByState, userSearchInput } = this.state
 		// allows you to choose what you're sorting by
-		// will work on first_name or last_name
+		// will work on first(name) or last(name)
 		const sortBy = sortByState
 
 		// sorts alphabetically by either first or last name
@@ -87,9 +90,13 @@ class UserSelect extends Component {
 		}
 
 		// filters out any of the names that do not include this.state.userSearchInput,
-		return this.props.users.filter((name) => {
+		if (this.props.users.data === undefined){
+			return <li>fetching</li>
+		}
+
+		return this.props.users.data.Items.filter((name) => {
 			// concat first/last into full name with a space so it will not filter out names with spaces
-			const full_name = (name.first_name + " " + name.last_name)
+			const full_name = (name.first + " " + name.last)
 			return (full_name.toLowerCase().includes(userSearchInput.toLowerCase()));
 		})
 		// then sorts alphabetically
@@ -101,12 +108,11 @@ class UserSelect extends Component {
 			let listItemClass = "list-group-item"
 			// if selectedUser != null, it will check if the selected user is = to the users id, if so, will add the active class
 			if (this.props.selectedUser != null){
-				listItemClass = (this.props.selectedUser.userId === users.id ? "list-group-item active" : "list-group-item")
+				listItemClass = (this.props.selectedUser.userId === users.userid ? "list-group-item active" : "list-group-item")
 			}
-
 			return (
-				<li key={users + i} className={listItemClass} onClick={() => this.chooseUserCart(users.first_name, users.id)}>
-					<h4 style={{textTransform:"capitalize"}}>{users.first_name} {users.last_name}</h4>
+				<li key={users + i} className={listItemClass} onClick={() => this.chooseUserCart(users.first, users.userid)}>
+					<h4 style={{textTransform:"capitalize"}}>{users.first} {users.last}</h4>
 				</li>
 			)
 		})
@@ -117,7 +123,7 @@ class UserSelect extends Component {
 		const { addUserFirstNameInput, addUserLastNameInput } = this.state
 
 		function findName(name) {
-			if (name.first_name.toLowerCase() === addUserFirstNameInput.toLowerCase() && name.last_name.toLowerCase() === addUserLastNameInput.toLowerCase()){
+			if (name.first.toLowerCase() === addUserFirstNameInput.toLowerCase() && name.last.toLowerCase() === addUserLastNameInput.toLowerCase()){
 				return true
 			}
 		}
@@ -128,13 +134,23 @@ class UserSelect extends Component {
 			if (addUserLastNameInput !== "") {
 				// checks to see if both the first and last name are already from one user
 				// if so, will present error
-				if (this.props.users.find(findName)){
+				if (this.props.users.data.Items.find(findName)){
 					this.setState({ userExistsErrorDisplay: "" })
 					return
 				}
 
 				// if both are displayed, then it will submit
-				this.props.createNewUser(addUserFirstNameInput, addUserLastNameInput)
+				// this.props.createNewUser(addUserFirstNameInput, addUserLastNameInput)
+				axios.post(`${ROOT_URL}/users`, {
+					first: "steve",
+					last: "wonder"
+				})
+				.then(function(response) {
+					console.log(response)
+				})
+				.then(function(error) {
+					console.log(error)
+				})
 				// resets both back to empty
 				this.setState({ newUserAddedFirstName: addUserFirstNameInput, newUserAddedLastName: addUserLastNameInput, addUserFirstNameInput: "", addUserLastNameInput: ""})
 				return
@@ -258,11 +274,11 @@ class UserSelect extends Component {
 				<h3 style={{display:"inline-block"}}>Users</h3>
 				<div style={{marginTop:"20px"}} className="btn-group pull-right">
 					<button
-						className={this.state.sortByState === "first_name" ? "btn btn-primary" : "btn btn-default"}
-						onClick={() => this.setState({ sortByState: "first_name" })}>First</button>
+						className={this.state.sortByState === "first" ? "btn btn-primary" : "btn btn-default"}
+						onClick={() => this.setState({ sortByState: "first" })}>First</button>
 					<button
-						className={this.state.sortByState === "last_name" ? "btn btn-primary" : "btn btn-default"}
-						onClick={() => this.setState({ sortByState: "last_name" })}>Last</button>
+						className={this.state.sortByState === "last" ? "btn btn-primary" : "btn btn-default"}
+						onClick={() => this.setState({ sortByState: "last" })}>Last</button>
 				</div>
 				<div className="col-xs-12 input-group">
 					<input

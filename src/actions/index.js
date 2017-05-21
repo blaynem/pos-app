@@ -1,4 +1,4 @@
-
+import axios from 'axios';
 // this gets all users from my mock api
 export const GET_ALL_USERS = "GET_ALL_USERS";
 // this will make it so when you press a button it pushes it to the "add to cart" cart,
@@ -16,10 +16,15 @@ export const ADD_TO_USERS_CART = "ADD_TO_USERS_CART";
 // this will allow you to create a new user
 export const CREATE_NEW_USER = "CREATE_NEW_USER";
 
-export function getUsers(usersData) {
+const ROOT_URL = 'https://1vfqaxaq34.execute-api.us-west-2.amazonaws.com/prod'
+
+export function getUsers() {
+	const request = axios.get(`${ROOT_URL}/users`)
+	console.log(request)
+	
 	return {
 		type: GET_ALL_USERS,
-		usersData
+		payload: request
 	}
 }
 
@@ -66,23 +71,31 @@ export function addToUsersCart(userId, items) {
 	}
 }
 
-export function createNewUser(firstName, lastName) {
-	const s4 = () => {
-		return Math.floor((1 + Math.random()) * 0x10000)
-			.toString(16)
-			.substring(1)
-	}
+export function createNewUser(first, last) {
+	// const s4 = () => {
+	// 	return Math.floor((1 + Math.random()) * 0x10000)
+	// 		.toString(16)
+	// 		.substring(1)
+	// }
 
-	const guid = () => {
-		return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`
-	}
+	// const guid = () => {
+	// 	return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`
+	// }
 
-	const id = guid()
+	// const id = guid()
+	axios.post(`${ROOT_URL}/users`, {
+		first: "steve",
+		last: "wonder"
+	})
+	.then(function(response) {
+		console.log(response)
+	})
+	.then(function(error) {
+		console.log(error)
+	})
+	// console.log(request)
 
 	return {
-		type: CREATE_NEW_USER,
-		firstName,
-		lastName,
-		id
+		type: CREATE_NEW_USER
 	}
 }

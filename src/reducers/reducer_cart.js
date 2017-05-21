@@ -14,7 +14,7 @@ export function allUsersData(state = [], action){
 	switch(action.type) {
 		// actions: usersData
 		case GET_ALL_USERS:
-			return action.usersData;
+			return action.payload;
 		// actions: firstName, lastName, id (to be changed)
 		// need to include an empty cart array
 		case CREATE_NEW_USER:

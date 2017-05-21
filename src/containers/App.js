@@ -6,14 +6,13 @@ import { bindActionCreators } from 'redux';
 import { getUsers } from '../actions';
 
 import UserSelect from '../components/user_select';
-import Users from '../data/users';
 
 class App extends Component {
 	constructor(props){
 		super(props)
 		
-		this.props.getUsers(Users);
-	}
+		this.props.getUsers()
+  }
 
   render() {
     const madeByStyles = {

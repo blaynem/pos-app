@@ -7,27 +7,29 @@ class UsersCartOverview extends Component {
 	getTotal(cart) {
 		let total= 0;
 
-		cart.forEach((cartItem) => {
-			return total += cartItem.price
-		})
+		// need to update with AWS
+		// cart.forEach((cartItem) => {
+		// 	return total += cartItem.price
+		// })
 
 		return total
 	}
 
 	FindSelectedUser() {
+		console.log(this.props.users.data)
 		const { users, user } = this.props;
 		if (user === null) {
 			return <div><h3>Please select a User</h3></div>
 		}
 		// runs through all users in store, when it finds the users.id that matches the selected userId,
 		// will set that value to selectedUser.
-		const selectedUser = users.find((singleUser) => {
-			return singleUser.id === user.userId
+		const selectedUser = users.data.Items.find((singleUser) => {
+			return singleUser.userid === user.userId
 		})
 
 		return (
 			<div>
-				<h3>{selectedUser.first_name} {selectedUser.last_name}</h3>
+				<h3>{selectedUser.first} {selectedUser.last}</h3>
 				<ul className="list-group">
 					{this.RenderCartItems(selectedUser)}
 				</ul>
@@ -39,17 +41,18 @@ class UsersCartOverview extends Component {
 	}
 
 	RenderCartItems(thing) {
-		return thing.cart.map((cartItem, i) => {
-			return (
-				<li className="list-group-item" key={i}>
-					<div className="row">
-						<div className="col-xs-4">Price: {cartItem.price}</div>
-						<div className="col-xs-4">Size: {cartItem.size}</div>
-						<div className="col-xs-4">Brand: {cartItem.brand}</div>
-					</div>
-				</li>
-			)
-		})
+		console.log("need to update with aws")
+		// return thing.cart.map((cartItem, i) => {
+		// 	return (
+		// 		<li className="list-group-item" key={i}>
+		// 			<div className="row">
+		// 				<div className="col-xs-4">Price: {cartItem.price}</div>
+		// 				<div className="col-xs-4">Size: {cartItem.size}</div>
+		// 				<div className="col-xs-4">Brand: {cartItem.brand}</div>
+		// 			</div>
+		// 		</li>
+		// 	)
+		// })
 	}
 
 	render() {
