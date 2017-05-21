@@ -17,7 +17,7 @@ class Cart extends Component {
 	}
 
 	// on add to users cart button press, will do just that - neat.
-	AddToUsersCartButton(userId, items) {
+	AddToUsersCartButton(items) {
 		const { user, addToUsersCart, cart } = this.props
 		if (cart.length <= 0 ){
 			this.setState({ emptyCartErrorDisplay: "" })
