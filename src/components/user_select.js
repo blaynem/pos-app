@@ -141,7 +141,7 @@ class UserSelect extends Component {
 				// needs to be a better way to do this
 				setTimeout(() => {
 					this.props.getUsers()
-				}, 500)
+				}, 1000)
 				// resets both back to empty
 				this.setState({ newUserAddedFirstName: addUserFirstNameInput, newUserAddedLastName: addUserLastNameInput, addUserFirstNameInput: "", addUserLastNameInput: ""})
 				return

@@ -5,7 +5,9 @@ import {
 	REMOVE_CURRENT_USER_FROM_CART,
 	GET_ALL_USERS,
 	ADD_TO_USERS_CART,
-	CREATE_NEW_USER
+	CREATE_NEW_USER,
+	INCREMENT_ITEM_QUANTITY,
+	DECREMENT_ITEM_QUANTITY
 } from '../actions';
 
 // gets all users data - i.e. cart information
@@ -37,19 +39,62 @@ export function addCartReducer(state = [] , action) {
 	switch(action.type) {
 		// actions: brand, price, size
 		case PUSH_TO_ADDCART:
-			state.map((items) => {
-				if (items.id === action.id && items.size === action.size){
-					console.log("has simiar")
-				}
-			})
-			return [ ...state, {
-				brand: action.brand,
-				price: action.price,
-				size: action.size,
-				id: action.id,
-				quantity: action.quantity
+			// searches through current state to see if the item is already in cart, if it is, returns the index
+			const itemIndex = state.findIndex(item => item.id === action.id && item.size === action.size)
+			// if items is not in cart, will add it to cart
+			if (itemIndex === -1){
+				return [ ...state, {
+					brand: action.brand,
+					price: action.price,
+					size: action.size,
+					id: action.id,
+					quantity: action.quantity
+				}]
+			} else {
+			// if item is in cart, will increase it's quantity by 1
+				const amount = state[itemIndex].quantity
+				amount++
+				return [ ...state.slice(0, itemIndex),
+					{
+						brand: action.brand,
+						price: action.price,
+						size: action.size,
+						id: action.id,
+						quantity: amount
+					},
+					...state.slice(itemIndex + 1)
+				]
 			}
-		];
+		// grabs the items index in the cart, and then increments it's quantity by 1
+		case INCREMENT_ITEM_QUANTITY:
+			let item = state[action.index]
+			let amount = state[action.index].quantity
+			amount++
+			return [ ...state.slice(0, action.index),
+				{
+					brand: item.brand,
+					price: item.price,
+					size: item.size,
+					id: item.id,
+					quantity: amount
+				},
+				...state.slice(action.index + 1)
+			]
+		// grabs the items index in the cart, and then decrements it's quantity by 1
+		case DECREMENT_ITEM_QUANTITY:
+			item = state[action.index]
+			amount = state[action.index].quantity
+			amount--
+			return [ ...state.slice(0, action.index),
+				{
+					brand: item.brand,
+					price: item.price,
+					size: item.size,
+					id: item.id,
+					quantity: amount
+				},
+				...state.slice(action.index + 1)
+			]
 		// actions: index
 		case REMOVE_FROM_ADDCART:
 			return state.filter((item, index) => index !== action.index);

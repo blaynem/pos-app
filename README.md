@@ -43,6 +43,7 @@ This application acts similar to a Point of Sale System you'd find in a bar/club
 - Probably need to change how all of the data is structured for items.
 - Modify all items prices. (Discounts, etc.)
 - Add dates to purchases.
+- Ability to add more items (alcohol, food)
 - If you add multiples of the same item, it should say something like "sm X #" instead of adding multiple rows of items.
 - Ability for users to see their carts - via sign in type thing.
 - Add more todo things.

@@ -13,6 +13,10 @@ export const CHOOSE_USER_CART = "CHOOSE_USER_CART";
 export const REMOVE_CURRENT_USER_FROM_CART = "REMOVE_CURRENT_USER_FROM_CART";
 // this will add all items in the cart to the selected users cart.
 export const ADD_TO_USERS_CART = "ADD_TO_USERS_CART";
+// this will INCREMENT the items quantity in the cart
+export const INCREMENT_ITEM_QUANTITY = "INCREMENT_ITEM_QUANTITY";
+// this will DECREMENT the items quantity in the cart
+export const DECREMENT_ITEM_QUANTITY = "DECREMENT_ITEM_QUANTITY";
 // this will allow you to create a new user
 export const CREATE_NEW_USER = "CREATE_NEW_USER";
 
@@ -68,6 +72,20 @@ export function addToUsersCart(userId, items) {
 		type: ADD_TO_USERS_CART,
 		userId,
 		items
+	}
+}
+
+export function incrementItemQuantity(index){
+	return {
+		type: INCREMENT_ITEM_QUANTITY,
+		index
+	}
+}
+
+export function decrementItemQuantity(index){
+	return {
+		type: DECREMENT_ITEM_QUANTITY,
+		index
 	}
 }
 
