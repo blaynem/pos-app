@@ -77,13 +77,11 @@ export function createNewUser(first, last) {
 		last
 	}) 
 	.then(function(response) {
-		console.log(response)
+		console.log("response", response)
 	})
 	.then(function(error) {
 		console.log(error)
 	})
-
-	getUsers()
 
 	return {
 		type: CREATE_NEW_USER

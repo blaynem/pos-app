@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { chooseUserCart, createNewUser } from '../actions';
+import { chooseUserCart, createNewUser, getUsers } from '../actions';
 
 import './user_select.css';
-
-import axios from 'axios';
-const ROOT_URL = 'https://1vfqaxaq34.execute-api.us-west-2.amazonaws.com/prod'
 
 class UserSelect extends Component {
 	constructor(props){
@@ -91,7 +88,7 @@ class UserSelect extends Component {
 
 		// filters out any of the names that do not include this.state.userSearchInput,
 		if (this.props.users.data === undefined){
-			return <li>fetching</li>
+			return <li className="list-group-item"><h4>Loading...</h4></li>
 		}
 
 		return this.props.users.data.Items.filter((name) => {
@@ -141,6 +138,10 @@ class UserSelect extends Component {
 
 				// if both are displayed, then it will submit
 				this.props.createNewUser(addUserFirstNameInput, addUserLastNameInput)
+				// needs to be a better way to do this
+				setTimeout(() => {
+					this.props.getUsers()
+				}, 500)
 				// resets both back to empty
 				this.setState({ newUserAddedFirstName: addUserFirstNameInput, newUserAddedLastName: addUserLastNameInput, addUserFirstNameInput: "", addUserLastNameInput: ""})
 				return
@@ -305,7 +306,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ chooseUserCart, createNewUser }, dispatch)
+	return bindActionCreators({ chooseUserCart, createNewUser, getUsers }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSelect);
