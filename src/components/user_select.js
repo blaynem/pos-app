@@ -140,17 +140,7 @@ class UserSelect extends Component {
 				}
 
 				// if both are displayed, then it will submit
-				// this.props.createNewUser(addUserFirstNameInput, addUserLastNameInput)
-				axios.post(`${ROOT_URL}/users`, {
-					first: "steve",
-					last: "wonder"
-				})
-				.then(function(response) {
-					console.log(response)
-				})
-				.then(function(error) {
-					console.log(error)
-				})
+				this.props.createNewUser(addUserFirstNameInput, addUserLastNameInput)
 				// resets both back to empty
 				this.setState({ newUserAddedFirstName: addUserFirstNameInput, newUserAddedLastName: addUserLastNameInput, addUserFirstNameInput: "", addUserLastNameInput: ""})
 				return

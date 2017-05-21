@@ -72,28 +72,18 @@ export function addToUsersCart(userId, items) {
 }
 
 export function createNewUser(first, last) {
-	// const s4 = () => {
-	// 	return Math.floor((1 + Math.random()) * 0x10000)
-	// 		.toString(16)
-	// 		.substring(1)
-	// }
-
-	// const guid = () => {
-	// 	return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`
-	// }
-
-	// const id = guid()
 	axios.post(`${ROOT_URL}/users`, {
-		first: "steve",
-		last: "wonder"
-	})
+		first,
+		last
+	}) 
 	.then(function(response) {
 		console.log(response)
 	})
 	.then(function(error) {
 		console.log(error)
 	})
-	// console.log(request)
+
+	getUsers()
 
 	return {
 		type: CREATE_NEW_USER
