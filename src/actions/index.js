@@ -1,6 +1,8 @@
 import axios from 'axios';
-// this gets all users from my mock api
+// this gets all users from the dynamoDB
 export const GET_ALL_USERS = "GET_ALL_USERS";
+// this gets all items from the dynamoDB
+export const GET_ALL_ITEMS = "GET_ALL_ITEMS";
 // this will make it so when you press a button it pushes it to the "add to cart" cart,
 // after that you will need to chose a persons cart that will accept this 
 export const PUSH_TO_ADDCART = "PUSH_TO_ADDCART";
@@ -24,10 +26,18 @@ const ROOT_URL = 'https://1vfqaxaq34.execute-api.us-west-2.amazonaws.com/prod'
 
 export function getUsers() {
 	const request = axios.get(`${ROOT_URL}/users`)
-	console.log(request)
 	
 	return {
 		type: GET_ALL_USERS,
+		payload: request
+	}
+}
+
+export function getItems() {
+	const request = axios.get(`${ROOT_URL}/items`)
+	
+	return {
+		type: GET_ALL_ITEMS,
 		payload: request
 	}
 }

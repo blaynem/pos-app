@@ -101,8 +101,14 @@ class Menu extends Component {
 	}
 }
 
+// maps the state of all items to the prop users.
+function mapStateToProps(state){
+	return { items: state.allItems.data }
+}
+
+
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ addToAddCart }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

@@ -300,7 +300,7 @@ class UserSelect extends Component {
 	}
 }
 
-// maps the state of all usersData to the prop users.
+// maps the state of all usersData to the prop users, as well as the currently selected user.
 function mapStateToProps(state){
 	return { users: state.allUsersData, selectedUser: state.user }
 }

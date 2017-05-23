@@ -3,7 +3,7 @@ import Header from '../components/header'
 import Menu from '../components/menu';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getUsers } from '../actions';
+import { getUsers, getItems } from '../actions';
 
 import UserSelect from '../components/user_select';
 
@@ -12,6 +12,7 @@ class App extends Component {
 		super(props)
 		
 		this.props.getUsers()
+    this.props.getItems()
   }
 
   render() {
@@ -41,7 +42,7 @@ class App extends Component {
 
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ getUsers }, dispatch)
+	return bindActionCreators({ getUsers, getItems }, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(App);
