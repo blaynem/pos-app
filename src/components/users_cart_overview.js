@@ -16,7 +16,7 @@ class UsersCartOverview extends Component {
 	}
 
 	FindSelectedUser() {
-		console.log(this.props.users.data)
+		// console.log(this.props.users.data)
 		const { users, user } = this.props;
 		if (user === null) {
 			return <div><h3>Please select a User</h3></div>

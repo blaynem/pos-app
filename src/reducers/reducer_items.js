@@ -8,7 +8,6 @@ export default function allItems(state = [], action){
 	switch(action.type) {
 		// actions: usersData
 		case GET_ALL_ITEMS:
-			console.log("uh ya", action.payload)
 			return action.payload;
 		default:
 			return state
