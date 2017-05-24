@@ -11,18 +11,14 @@ export default function allUsersData(state = [], action){
 		// actions: usersData
 		case GET_ALL_USERS:
 			return action.payload;
-		// actions: firstName, lastName, id (to be changed)
-		// need to include an empty cart array
+		// just returns state, since we created a new user on aws,
+		// need to figure out best way to behave in redux after adding a new user
 		case CREATE_NEW_USER:
 			return state
-		// actions: userId, items
+		// just returns state, since we added it to a users cart on aws,
+		// need to figure out best way to behave in redux after posting something to a users cart
 		case ADD_TO_USERS_CART:
-			return [ ...state.map(user => {
-				if (user.id === action.userId) {
-					user = { ...user, cart: user.cart.concat(action.items)}
-				}
-				return user;
-			})]
+			return state
 		default:
 			return state
 	}
