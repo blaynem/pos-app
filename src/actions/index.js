@@ -77,21 +77,10 @@ export function removeCurrentUserFromCart() {
 }
 
 export function addToUsersCart(userid, lineItems) {
-	const date = new Date()
-	console.log(date)
-	console.log(userid)
-	console.log(lineItems)
-	console.log("-----------")
 	axios.post(`${ROOT_URL}/carts`, {
     userid,
     lineItems
 	}) 
-	.then(function(response) {
-		console.log("response", response)
-	})
-	.then(function(error) {
-		console.log(error)
-	})
 
 	return {
 		type: ADD_TO_USERS_CART
@@ -117,12 +106,6 @@ export function createNewUser(first, last) {
 		first,
 		last
 	}) 
-	.then(function(response) {
-		console.log("response", response)
-	})
-	.then(function(error) {
-		console.log(error)
-	})
 
 	return {
 		type: CREATE_NEW_USER
