@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
-			// {users.cart.map((item, i) => {return <p key={item + i}>{i}. {item.brand}</p>})}
 class UsersCartOverview extends Component {
-	getTotal(cart) {
+	getTotal(selectedUser) {
 		let total= 0;
 
-		// need to update with AWS
-		// cart.forEach((cartItem) => {
-		// 	return total += cartItem.price
-		// })
+		const selectedUsersCart = this.props.userCarts.find(cart => {
+			return cart.userid === selectedUser.userid
+		})
 
-		return total
+		if (selectedUsersCart === undefined){ return }
+		// need to update with AWS
+		selectedUsersCart.cartItems.forEach((cartItem) => {
+			cartItem.lineItems.forEach((singleItem) =>{
+				const cartItemTotalPrice = parseInt(singleItem.price, 10) * parseInt(singleItem.quantity, 10)
+				return total += cartItemTotalPrice
+			})
+		})
+
+		if (total === 0) {return}
+		return (
+			<div>
+				<p>Total Price: ${total}</p>
+			</div>
+		)
 	}
 
 	FindSelectedUser() {
-		// console.log(this.props.users.data)
 		const { users, user } = this.props;
 		if (user === null) {
 			return <div><h3>Please select a User</h3></div>
@@ -26,33 +36,44 @@ class UsersCartOverview extends Component {
 		const selectedUser = users.data.Items.find((singleUser) => {
 			return singleUser.userid === user.userId
 		})
-
+		// console.log(selectedUser)
 		return (
 			<div>
-				<h3>{selectedUser.first} {selectedUser.last}</h3>
+				<h3 style={{textTransform: "capitalize"}}>{selectedUser.first} {selectedUser.last}</h3>
 				<ul className="list-group">
 					{this.RenderCartItems(selectedUser)}
 				</ul>
-				<div>
-					<p>Total Price: ${this.getTotal(selectedUser.cart).toFixed(2)}</p>
-				</div>
+				{this.getTotal(selectedUser)}
 			</div>
 		)	
 	}
 
-	RenderCartItems(thing) {
-		console.log("need to update with aws")
-		// return thing.cart.map((cartItem, i) => {
-		// 	return (
-		// 		<li className="list-group-item" key={i}>
-		// 			<div className="row">
-		// 				<div className="col-xs-4">Price: {cartItem.price}</div>
-		// 				<div className="col-xs-4">Size: {cartItem.size}</div>
-		// 				<div className="col-xs-4">Brand: {cartItem.brand}</div>
-		// 			</div>
-		// 		</li>
-		// 	)
-		// })
+	RenderCartItems(selectedUser) {
+		const { userCarts } = this.props
+
+		const selectedUsersCart = userCarts.find(cart => {
+			return cart.userid === selectedUser.userid
+		})
+
+		if (selectedUsersCart === undefined){ return }
+		if (!selectedUsersCart.cartItems.length > 0) {
+			return <li className="list-group-item"><h4>No items in cart.</h4></li>
+		}
+
+		return selectedUsersCart.cartItems.map((cartItem, i) => {
+			return cartItem.lineItems.map((item, i) => {
+				return (
+					<li className="list-group-item" key={item.size + i}>
+						<div className="row">
+							<div className="col-xs-3">Price: {item.price}</div>
+							<div className="col-xs-3">Size: {item.size}</div>
+							<div className="col-xs-3">Quantity: {item.quantity}</div>
+							<div className="col-xs-3">Brand: {item.brand}</div>
+						</div>
+					</li>
+				)
+			})
+		})
 	}
 
 	render() {
@@ -67,7 +88,7 @@ class UsersCartOverview extends Component {
 }
 
 function mapStateToProps(state) {
-	return { user: state.user, users: state.allUsersData }
+	return { user: state.user, users: state.allUsersData, userCarts: state.downloadedCarts }
 }
 
 export default connect(mapStateToProps, { })(UsersCartOverview);

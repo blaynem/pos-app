@@ -38,6 +38,7 @@ This application acts similar to a Point of Sale System you'd find in a bar/club
 ## Todo
 
 - Add price total to addCart (cart in menu)
+- Remove api call if user is not under the "all user carts" tab
 - Create a scrolling box around users so the page isn't gigantic from having a ton of users.
 	- Edit scroll so it only shows if certain amount of users are seen.
 - Modify items button inside cart.
