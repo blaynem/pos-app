@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { chooseUserCart, createNewUser, getUsers } from '../actions';
+import { chooseUserCart, createNewUser, getUsers, getUserCartItemsAWS } from '../actions';
 
 import './user_select.css';
 
@@ -31,6 +31,7 @@ class UserSelect extends Component {
 	chooseUserCart(name, userId){
 		this.setState({ userIndex: userId })
 		this.props.chooseUserCart(name, userId);
+		this.props.getUserCartItemsAWS(userId)
 	}
 
 	// refactored to allow multiple inputs to be handled depends on the targets name attribute
@@ -302,11 +303,11 @@ class UserSelect extends Component {
 
 // maps the state of all usersData to the prop users, as well as the currently selected user.
 function mapStateToProps(state){
-	return { users: state.allUsersData, selectedUser: state.user }
+	return { users: state.allUsersData, selectedUser: state.user, userCarts: state.downloadedCarts }
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ chooseUserCart, createNewUser, getUsers }, dispatch)
+	return bindActionCreators({ chooseUserCart, createNewUser, getUsers, getUserCartItemsAWS }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSelect);

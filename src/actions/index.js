@@ -21,6 +21,8 @@ export const INCREMENT_ITEM_QUANTITY = "INCREMENT_ITEM_QUANTITY";
 export const DECREMENT_ITEM_QUANTITY = "DECREMENT_ITEM_QUANTITY";
 // this will allow you to create a new user
 export const CREATE_NEW_USER = "CREATE_NEW_USER";
+// this will grab a users cart from AWS and store it in a cache.
+export const GET_USER_CART_ITEMS_AWS = "GET_USER_CART_ITEMS_AWS"
 
 const ROOT_URL = 'https://1vfqaxaq34.execute-api.us-west-2.amazonaws.com/prod'
 
@@ -113,5 +115,15 @@ export function createNewUser(first, last) {
 
 	return {
 		type: CREATE_NEW_USER
+	}
+}
+
+export function getUserCartItemsAWS(userid) {
+	const request = axios.get(`${ROOT_URL}/carts?userid=${userid}`)
+
+	return {
+		type: GET_USER_CART_ITEMS_AWS,
+		payload: request,
+		meta: {userid}
 	}
 }

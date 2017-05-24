@@ -1,3 +1,5 @@
+// this reducer changes who is currently selected throughout the application
+
 import { 
 	CHOOSE_USER_CART,
 	REMOVE_CURRENT_USER_FROM_CART,
