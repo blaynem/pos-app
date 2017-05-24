@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Current Build
 
-You can test out the current build **[here](http://blaynepos.surge.sh/)**. Thank you so much to surge.sh for the beautiful ability of hosting sites like this.
+You can test out the current build **[here](https://blayne-pos-app.herokuapp.com/)**. **App may take a few seconds to load as heroku turns applications off if the site has not been viewed for awhile.**
 
 Quick Gif of App in action (This is an older build):
 ![Point of Sale Application](http://i.imgur.com/MaWD1pW.gif)
