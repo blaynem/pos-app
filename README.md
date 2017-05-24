@@ -48,6 +48,7 @@ This application acts similar to a Point of Sale System you'd find in a bar/club
 - Ability to add more items (alcohol, food)
 - Ability for users to see their carts - via sign in type thing.
 - Add more todo things.
+- Create an api key so AWS can't get rekt.
 
 ### Todo Completed
 
